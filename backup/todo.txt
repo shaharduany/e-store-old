@@ -1,0 +1,4 @@
+1. Build all the components on Header
+2. build Items component for Shop
+3. Build login register and logout buttons
+4. link with backend
