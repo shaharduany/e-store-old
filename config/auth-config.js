@@ -1,5 +1,8 @@
+const config = require('config');
+const key = config.get('secret');
+
 module.exports = {
-    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    secret: key,
     oneDay: 86400,
     sessionSetting: {
         secret: this.secret,
