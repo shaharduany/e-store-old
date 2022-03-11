@@ -4,10 +4,12 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const connectDB = require('../config/mongoDB');
-const { mainGet, cartGet, accountGet, loginPost, registerPost } = require("../controller/appController");
+const { mainGet, cartGet, accountGet, loginPost, registerPost, checkout } = require("../controller/appController");
 const authConfig = require("../config/auth-config");
 const verifySignUp = require("./middleware/verify-signup");
 const { signupUser, signin } = require("./assist-functions");
+const { throws } = require("assert");
+const { authJwt } = require("./middleware/auth-jwt");
 
 class Server {
   constructor() {
@@ -20,6 +22,7 @@ class Server {
       login: "/api/login",
       register: "/api/register",
       logout: "/api/logout",
+      checkout: "/api/checkout",
     };
     this.middlewares();
     this.routes();
@@ -51,13 +54,8 @@ class Server {
   routes() {
     this.app.post(this.paths.register, verifySignUp.checkDuplicatedEmail, signupUser);
     this.app.post(this.paths.login, signin);
-    this.app.post(this.paths.logout, (req, res, next) => {
-      console.log(`fill this up`);
-    });
+    this.app.post(this.paths.checkout, authJwt.verifyToken, checkout)
 
-    this.app.get(this.paths.homepage, mainGet);
-    this.app.get(this.paths.cart, cartGet);
-    this.app.get(this.paths.account, accountGet);
   }
 
   listen() {

@@ -3,6 +3,26 @@ var bcrypt = require("bcryptjs");
 const User = require("../modules/User");
 const authConfig = require("../config/auth-config");
 
+const checkAmount = async(items) => {
+  for(item of items){
+    let stock = await Item.findById(item._id);
+    let quantity = stock.quantity - item.quantity;
+
+    if(!stock || (quantity < 0)){
+      return false;
+    } else {
+      quan
+      await Item.findByIdAndUpdate(item._id, {quantity: quantity});
+    }
+  }
+  return true;
+};
+
+const updateUser = async (user, items) => {
+  //build it
+}
+
+
 const hashPassword = (req) => {
   return  bcrypt.hashSync(req.body.password, 8);
 }
@@ -22,7 +42,6 @@ const signupUser = (req, res) => {
       return;
     }
   });
-  
 }
 
 const signin = async(req, res) => {
@@ -131,4 +150,6 @@ const assignUser = (req, usr) => {
     sessionExists, sessionTemplate, 
     updateSession,
     signin, signupUser,
+    checkAmount, updateUser,
+    
   }

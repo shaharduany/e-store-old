@@ -3,9 +3,9 @@ const User = require('../modules/User');
 const Session = require('../modules/Session');
 const session = require('express-session');
 const { check } = require('express-validator');
-const {checkResult, userFromSession, checkUserOK,
-  sessionExists, sessionTemplate, assignUser,
-  updateSession,
+const {checkUserOK,
+  sessionTemplate, assignUser,
+  updateUser, checkAmount,
 } = require('../scripts/assist-functions');
 
 const ERRORS = {
@@ -36,58 +36,16 @@ module.exports.mainGet = async (req, res, next) => {
     }
 }
 
-module.exports.loginPost = async(req, res, next) => {
-  if(sessionExists(req, res)){
-    res.redirect('/api/homepage');
-    return;
+module.exports.checkout = async(req, res, next) => {
+  const user = req.body.userId;
+  const items = req.body.items;
+  const msg = {
+    message: "invalid, couldn't proccessed"
   }
-
-  const { email, password } = req.body;
-
-  let result = User.findOne({email: email}); 
-  if(checkResult(email, password, result)){
-    //update cookies and session both at server and database, send whatever is required
-    updateSession(req, result);
-    res.redirect('/api/homepage');
-  } else {
-    res.json({error: ERRORS.invalidInput});
+  const validAmount = await checkAmount(items);
+  if(validAmount){
+    //BUILD updateUser
+    msg.message = await updateUser(user, items);
   }
-};
-
-module.exports.registerPost = async (req, res, next) => {
-  console.log('got req1');
-  const {email, password} = req.body;
-  console.log('got req');
-  console.log(body);
-  
-  /*
-  let result = User.find({email: email});
-  if(result !== [] || !check(email).isEmail()){
-    res.status(401).json({error: ERRORS.invalidInput});
-  } else {
-    let hash = password; //hash the password here
-    const user = new User({email: email, password: hash});
-    user.save();
-    updateSession(req, user);
-    res.redirect(`/api/homepage`);
-  }*/
-}
-
-module.exports.cartGet = async (req, res, next) => {
-  const user = userFromSession(req);
-  if(checkUserOK(user)){
-    res.json(user.cart);
-  } else {
-    res.redirect('/api/login');
-  }
-}
-
-module.exports.accountGet = async (req, res, next) => {
-  let user = userFromSession(req);
-  if(checkUserOK(user)){
-    user.password = "";
-    res.json(user);
-  } else {
-    res.redirect('/api/login');
-  }
+  return await res.json(msg);
 }

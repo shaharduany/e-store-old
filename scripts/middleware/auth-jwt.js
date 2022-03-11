@@ -23,8 +23,6 @@ const isUser = async(req, res, next) => {
     //you may need it later
 }
 
-const authJwt = {
+module.exports.authJwt = {
     verifyToken,
 }
-
-module.exports = authJwt;
