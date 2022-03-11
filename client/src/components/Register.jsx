@@ -1,17 +1,12 @@
 import React, {useState} from 'react';
-import { registerPost } from '../scripts/api-scripts';
-
+import {register} from '../scripts/auth-services';
 const Register = (props) => {
     
     const [emailValue, setEmailValue] = useState("");
     const [passwordValue, setPasswordValue] = useState("");
 
     const handleSubmit = async(event) => {
-        let value = {
-            email: emailValue,
-            password: passwordValue
-        };
-        await registerPost(value);
+        await register(emailValue, passwordValue);
     }
 
     const handlePassword = (event) => {

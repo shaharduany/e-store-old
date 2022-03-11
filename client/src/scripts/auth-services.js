@@ -1,6 +1,6 @@
 import authHeader from "./auth-header";
 
-export default async function login(username = "", email, password) {
+export async function login(email, password, username= "") {
     const values = {
         username: username,
         email: email, 
@@ -9,7 +9,7 @@ export default async function login(username = "", email, password) {
 
     const res = await fetch("/api/login", {
         method: "POST",
-        headers: authHeader,
+        headers: authHeader(),
         body: JSON.stringify(values)
     });
 
@@ -20,24 +20,28 @@ export default async function login(username = "", email, password) {
     return res.data;
 }
 
-export default async function logout(){
+export async function logout(){
     localStorage.removeItem
 }
 
-export default async function register(username = "", email, password) {
+export async function register(email, password, username = "") {
     let values = {
         username: username,
         email: email,
         password: password
     };
 
+    alert('in register')
+
     const res = await fetch("/api/register", {
         method: "POST",
-        headers: authHeader,
+        headers: authHeader(),
         body: JSON.stringify(values)
     });
+    const json = await res.json();
+    alert(json + "\n got this response");
 }
 
-export default function getCurrentUser() {
+export function getCurrentUser() {
     return JSON.parse(localStorage.getItem('user'));
 }

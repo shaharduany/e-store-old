@@ -14,6 +14,7 @@ const checkDuplicatedEmail = (req, res, next) => {
             res.status(400),send({message: "email already in use"})
             return;
         }
+        console.log('finished duplicate emails');
         next();
     });
 };

@@ -8,6 +8,7 @@ const hashPassword = (req) => {
 }
 
 const signupUser = (req, res) => {
+  console.log('in signup user');
   let email = req.body.email;
   let password = hashPassword(req);
   let user = new User({
@@ -21,6 +22,7 @@ const signupUser = (req, res) => {
       return;
     }
   });
+  
 }
 
 const signin = async(req, res) => {
