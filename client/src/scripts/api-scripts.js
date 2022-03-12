@@ -9,19 +9,30 @@ const API = {
 }
 
 export async function  login(email, password, username = "") {
-    
-    return axios.post(API.login, {
-      email,
-      username,
-      password
-    }).then((res) => {
-        alert('got here');
-        if(res.data.accessToken){
-            localStorage.setItem('user', JSON.stringify(res.data));
-        }
-        alert('got past it');
-        return res.data;
-    });
+  let values = {
+    email: email,
+    password: password,
+    username: username
+  }
+
+  const res = await fetch(API.login, {
+    method: "POST",
+    headers: authHeader(),
+    body: JSON.stringify(values)
+  });
+  
+  if(!res.ok){
+    throw new Error('Got back ' + res.status);
+  }
+
+  const json = await res.json();
+
+  if(json.accessToken){
+    localStorage.setItem('user', JSON.stringify(json));
+  }
+
+  alert('got past it');
+  return json;
 }
 
 export async function logout(){
@@ -29,13 +40,18 @@ export async function logout(){
 }
 
 export async function register(email, password, username = "") {
+  alert('in register');
     let values = {
-        username,
-        email,
-        password
+        username: username,
+        email: email,
+        password: password
     };
 
-    const res = await axios.post(API.register, values);
+    const res = await fetch(API.register, {
+      method: "POST",
+      headers: authHeader(),
+      body: JSON.stringify(values)
+    })
 
     return res;
 }
@@ -49,7 +65,7 @@ export async function getShopItems() {
       method: "GET",
       headers: authHeader()
     });
-    console.log("got here");
+    
     // you'll need to supply the function that checks the status here
     if (resp.ok) {
       const json = await resp.json();

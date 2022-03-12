@@ -37,6 +37,9 @@ const signupUser = (req, res) => {
   console.log('in signup user');
   let email = req.body.email;
   let password = hashPassword(req);
+  
+  console.log(`email > ${email} \t password > ${password}`);
+
   let user = new User({
     email: email,
     password: password
@@ -45,8 +48,10 @@ const signupUser = (req, res) => {
   user.save((err, user) => {
     if(err){
       res.status(400).send({message: err});
+      console.log(err);
       return;
     }
+    console.log(user);
   });
 }
 

@@ -1,5 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/mongoDB');
+const User = require('./modules/User');
 //const { accountView, cartView, mainView } = require('./controller/appController');
 
 const Server = require('./scripts/server').Server;
