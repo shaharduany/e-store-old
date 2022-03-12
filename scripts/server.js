@@ -4,29 +4,20 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const connectDB = require('../config/mongoDB');
-const { mainGet, cartGet, accountGet, loginPost, registerPost, checkout } = require("../controller/appController");
+const { mainGet, signin, signupUser, checkout } = require("../controller/appController");
 const authConfig = require("../config/auth-config");
 const verifySignUp = require("./middleware/verify-signup");
-const { signupUser, signin } = require("./assist-functions");
-const { throws } = require("assert");
 const { authJwt } = require("./middleware/auth-jwt");
+const {API_PATHS} = require("../config/route-paths");
 
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT || 9000; // Loaded from .env file
-    this.paths = {
-      homepage: "/api/homepage",
-      cart: "/api/cart",
-      account: "/api/account",
-      login: "/api/login",
-      register: "/api/register",
-      logout: "/api/logout",
-      checkout: "/api/checkout",
-    };
+
     this.middlewares();
     this.routes();
-  }çc
+  }
 
   middlewares() {
     this.app.use(function(req, res, next) {
@@ -52,11 +43,11 @@ class Server {
 
   // Bind controllers to routes
   routes() {
-    this.app.post(this.paths.register, verifySignUp.checkDuplicatedEmail, signupUser);
-    this.app.post(this.paths.login, signin);
-    this.app.post(this.paths.checkout, authJwt.verifyToken, checkout)
+    this.app.post(API_PATHS.register, verifySignUp.checkDuplicatedEmail, signupUser);
+    this.app.post(API_PATHS.login, signin);
+    this.app.post(API_PATHS.checkout, authJwt.verifyToken, checkout)
 
-    this.app.get(this.paths.homepage, mainGet);
+    this.app.get(API_PATHS.homepage, mainGet);
   }
 
   listen() {

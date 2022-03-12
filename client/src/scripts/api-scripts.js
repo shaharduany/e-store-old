@@ -1,10 +1,7 @@
 import authHeader from "./auth-header";
+import API_PATHS from "./api-paths";
 
-const API = {
-  homepage: "api/homepage/",
-  login: "/api/login/",
-  register: "/api/register/",    
-}
+const API = API_PATHS();
 
 export async function  login(email, password, username = "") {
   let values = {

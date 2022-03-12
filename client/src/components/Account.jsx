@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { getCurrentUser } from '../scripts/api-scripts';
 
 const Account = (props) => {
-    
-    const displayClick = () => {
-        alert(getCurrentUser());
+    const [user, setUser] = useState(getCurrentUser());
+
+    const reload = (event) => {
+        setUser(getCurrentUser());
     }
 
     return (<div className='account-div'>
-            <input type="button" value="display" onClick={displayClick} />
+            <h1>{user && user.email}</h1>
+            <button onClick={reload} >Click here</button>
     </div>);
 };
 
