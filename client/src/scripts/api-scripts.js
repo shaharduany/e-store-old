@@ -1,11 +1,9 @@
-import axios from "axios";
 import authHeader from "./auth-header";
 
 const API = {
-    homepage: "api/homepage/",
-    login: "/api/login/",
-    register: "/api/register/",
-    
+  homepage: "api/homepage/",
+  login: "/api/login/",
+  register: "/api/register/",    
 }
 
 export async function  login(email, password, username = "") {
