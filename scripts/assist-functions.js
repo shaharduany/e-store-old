@@ -18,8 +18,14 @@ const checkAmount = async(items) => {
   return true;
 };
 
-const updateUser = async (user, items) => {
-  //build it
+const updateUser = async (userId, items) => {
+  let user = await User.findById(userId);
+  
+  for(item of items) {
+    await user.history.push(item);
+  }
+
+  await User.findByIdAndUpdate(userId, {history: user.history});
 }
 
 
@@ -45,18 +51,30 @@ const signupUser = (req, res) => {
 }
 
 const signin = async(req, res) => {
+  console.log('got request');
+  let flag = false;
   let email = req.body.email;
   let password = req.body.password;
-
-  let user = User.findOne({email: email}).exect((err, user) => {
+  
+  console.log(`entered signin\n
+  searching for user`);
+  let user = User.findOne({email: email}).exec((err, user) => {
     if(err){
       res.status(404).send({message: err});
       return;
     }
     if(!user){
+      console.log('user not found');
+      flag = true;
       res.status(404).send({message: "User not found"});
       return;
     }
+    if(flag){
+      console.log('got to flag');
+      return;
+    }
+
+    console.log('validating password');
 
     let validPassword = bcrypt.compareSync(
       password,
@@ -64,15 +82,19 @@ const signin = async(req, res) => {
     );
 
     if(!validPassword){
+      console.log('invalid password');
       return res.status(404).send({
         accessToken: null,
         message: "Wrong or invalid password"
       });
     }
+    
+    console.log(`getting token`);
     let token = jwt.sign({id: user._id}, authConfig.secret, {
       expiresIn: authConfig.oneDay
     });
-
+    
+    console.log(`sending data from server to client`);
     res.status(200).send({
       id: user._id,
       username: user.username,
@@ -152,4 +174,5 @@ const assignUser = (req, usr) => {
     signin, signupUser,
     checkAmount, updateUser,
     
+
   }

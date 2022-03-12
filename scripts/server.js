@@ -56,6 +56,7 @@ class Server {
     this.app.post(this.paths.login, signin);
     this.app.post(this.paths.checkout, authJwt.verifyToken, checkout)
 
+    this.app.get(this.paths.homepage, mainGet);
   }
 
   listen() {

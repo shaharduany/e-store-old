@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {register} from '../scripts/auth-services';
+import {register} from '../scripts/api-scripts';
 const Register = (props) => {
     
     const [emailValue, setEmailValue] = useState("");

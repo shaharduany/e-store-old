@@ -37,15 +37,18 @@ module.exports.mainGet = async (req, res, next) => {
 }
 
 module.exports.checkout = async(req, res, next) => {
-  const user = req.body.userId;
+  const user = req.body.userid;
   const items = req.body.items;
   const msg = {
     message: "invalid, couldn't proccessed"
   }
+
   const validAmount = await checkAmount(items);
-  if(validAmount){
-    //BUILD updateUser
-    msg.message = await updateUser(user, items);
+  if(!validAmount){
+    res.status(400).json(msg);
+    return;
   }
-  return await res.json(msg);
+  
+  await updateUser(user, items);
+  res.status(200).json({message: "purchased successfully"});
 }
