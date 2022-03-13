@@ -14,10 +14,12 @@ const Register = (props) => {
     }
 
     const handleEmail = (event) => {
+        event.preventDefault();
         setEmailValue(event.target.value);
     }
 
     return (<div className='register-div'>
+        <h1>Register</h1>
         <form onSubmit={handleSubmit}>
             <label>Enter email</label>
             <input type="text" value={emailValue} name="email" onChange={handleEmail} />

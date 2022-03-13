@@ -5,7 +5,7 @@ import Input from "react-validation/build/input";
 
 
 const Login = (props) => {
-    const [logged, setLogged] = useState(false);
+    const [logged, setLogged] = useState();
 
     const [password, setPassword] = useState("");
     const handlePassword = (event) => {
@@ -18,34 +18,33 @@ const Login = (props) => {
     }
     
     const handleSubmit = async (event) => {
-        alert(email + " " + password);
-        await login(email, password);
-        setTimeout(() => {
-            var json = JSON.parse(localStorage.getItem('user'));
-            console.log(json.email);
-        }, 2000);
+        
+        event.preventDefault();
+        const data = await login(email, password);
     }
 
-    return (<div className="login-div" hidden={logged}>
-                <Form onSubmit={handleSubmit} >
-                <div>
-                    <label htmlFor="username">Email</label>
-                      <Input
-                        type="text"
-                        className="form-control"
-                        name="username"
-                        value={email}
-                        onChange={handleEmail}
-              /     >
+    return (
+    <div className="login-div" hidden={logged}>
+        <h1>LOGIN</h1>
+            <Form onSubmit={handleSubmit} >
+            <div>
+                <label htmlFor="username">Email</label>
+                <Input
+                    type="text"
+                    className="form-control"
+                    name="username"
+                    value={email}
+                    onChange={handleEmail}
+                />
             </div>
             <div className="form-group">
                 <label htmlFor="password">Password</label>
                 <Input
                     type="password"
-                className="form-control"
-                name="password"
-                value={password}
-                onChange={handlePassword}
+                    className="form-control"
+                    name="password"
+                    value={password}
+                    onChange={handlePassword}
               />
             </div>
             <div>
