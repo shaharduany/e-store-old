@@ -17,9 +17,13 @@ const Login = (props) => {
         setEmail(event.target.value);
     }
     
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         alert(email + " " + password);
-        login(email, password);
+        await login(email, password);
+        setTimeout(() => {
+            var json = JSON.parse(localStorage.getItem('user'));
+            console.log(json.email);
+        }, 2000);
     }
 
     return (<div className="login-div" hidden={logged}>

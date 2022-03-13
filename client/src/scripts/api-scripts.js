@@ -1,33 +1,29 @@
 import authHeader from "./auth-header";
 import API_PATHS from "./api-paths";
+import axios from "axios";
 
 const API = API_PATHS();
 
+
+
 export async function  login(email, password, username = "") {
+  
   let values = {
     email: email,
     password: password,
     username: username
   }
+  const headers = authHeader();
 
-  const res = await fetch(API.login, {
-    method: "POST",
-    headers: authHeader(),
-    body: JSON.stringify(values)
-  });
-  
-  if(!res.ok){
-    throw new Error('Got back ' + res.status);
+  const res = await axios.post(API.login, values, { headers });
+
+  const data = res.data;
+
+  if(data.accessToken){
+    localStorage.setItem('user', JSON.stringify(data));
   }
 
-  const json = await res.json();
-
-  if(json.accessToken){
-    localStorage.setItem('user', JSON.stringify(json));
-  }
-
-  alert('got past it');
-  return json;
+  return data.message;
 }
 
 export async function logout(){
@@ -35,38 +31,30 @@ export async function logout(){
 }
 
 export async function register(email, password, username = "") {
-  alert('in register');
-    let values = {
-        username: username,
-        email: email,
-        password: password
-    };
+  let values = {
+      username: username,
+      email: email,
+      password: password
+  };
 
-    const res = await fetch(API.register, {
-      method: "POST",
-      headers: authHeader(),
-      body: JSON.stringify(values)
-    })
+  let headers = authHeader();
+    
+  const res = await axios.post(API.register, values, {headers});
 
-    return res;
+  return res.data.message;
 }
 
 export function getCurrentUser() {
-    return JSON.parse(localStorage.getItem('user'));
+  return JSON.parse(localStorage.getItem('user'));
 }
 
 export async function getShopItems() {
-    const resp =  await fetch(API.homepage, {
-      method: "GET",
-      headers: authHeader()
-    });
-    
-    // you'll need to supply the function that checks the status here
-    if (resp.ok) {
-      const json = await resp.json();
-      console.log(json);
-      return json;
-    } else {
-        throw new Error(`Got back ${resp.status}`);
-    }
+  
+  const headers = authHeader();
+  const values = {};
+
+  const res = await axios.get(API.homepage, values, {headers});
+  
+  const data = res.data;
+  return data;
 }

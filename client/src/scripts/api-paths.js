@@ -1,7 +1,9 @@
 export default function API_PATHS(){
-    return  {
+    return {
     homepage: "api/homepage/",
-    login: "/api/login/",
-    register: "/api/register/",    
+    login: "/api/login",
+    register: "/api/register/",
+    checkout: "/api/checkout/",
+
     };
 }

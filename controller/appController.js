@@ -7,6 +7,10 @@ const {updateUser, checkAmount,
   hashPassword,
 } = require('../scripts/assist-functions');
 
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const authConfig = require('../config/auth-config');
+
 const ERRORS = {
     logged: "logged in",
     invalidEmail: "not a valid email",
@@ -38,7 +42,6 @@ module.exports.checkout = async(req, res, next) => {
 
 
 module.exports.signupUser = (req, res) => {
-  console.log('in signup user');
   let email = req.body.email;
   let password = hashPassword(req);
   
@@ -55,8 +58,11 @@ module.exports.signupUser = (req, res) => {
       console.log(err);
       return;
     }
-    console.log(user);
-  });
+
+    let msg = {message: "message"};
+    console.log("crated user");
+    res.send(msg);
+  }); 
 }
 
 module.exports.signin = async(req, res) => {
@@ -91,13 +97,18 @@ module.exports.signin = async(req, res) => {
       expiresIn: authConfig.oneDay
     });
     
-    res.status(200).send({
+    let vals = {
+      msg: "Successfully logged in",
       id: user._id,
       username: user.username,
       email: user.email,
       cart: user.cart,
       history: user.history,
       accessToken: token
-    });
+    };
+  
+    res.status(200).json(vals);
+    console.log(`vals > ${vals.email}`);
+
   });
 }
