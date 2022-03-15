@@ -5,6 +5,7 @@ import {addCartStyles} from './styles/shop-styles'
 const rangeStyles = addCartStyles.range;
 const rangeLabelStyles = addCartStyles.rangeLabel;
 
+
 export default function AddCart(props){
     const values = props.values;
     const [maxQuantity, setMaxQuantity] = useState(values.quantity);
