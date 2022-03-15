@@ -1,0 +1,11 @@
+.shop-div {
+    justify-content: center;
+    background-color: red;
+    padding: 100px;
+}
+
+.item-div {
+    align-items: center;
+    padding: 50px;
+    background-color: blueviolet;
+}

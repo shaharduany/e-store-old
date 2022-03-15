@@ -19,7 +19,7 @@ function Shop(props){
         setLoaded(true);
     }
 
-    return (<div className="ShopContent">
+    return (<div className="shop-div">
 
         {items && items.map((item) => 
         <Item key={item._id} values={item} />)}

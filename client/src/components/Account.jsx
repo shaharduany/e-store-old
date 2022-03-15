@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { getCurrentUser, logout } from '../scripts/api-scripts';
+import { Button } from 'react-bootstrap';
 
 const Account = (props) => {
     const [user, setUser] = useState(getCurrentUser());
