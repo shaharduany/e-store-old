@@ -3,26 +3,22 @@ import { getCurrentUser, logout } from '../scripts/api-scripts';
 import { Button } from 'react-bootstrap';
 import Name from './Name';
 import History from './History';
+import Message from './Message';
 
 const Account = (props) => {
     const [user, setUser] = useState(getCurrentUser());
-
-    const reload = (event) => {
-        if(user){
-            logout();
-            user = undefined;
-        } else {
-            setUser(getCurrentUser());
-        }
-    }
+    const flag = (user instanceof Object);
     
     return (
     <div className='account-div'>
         <h1>ACCOUNT</h1>
         <hr />
-        <Name user={user} />
-        <hr />
-        <History user={user} />
+        {flag && <div>
+            <Name user={user} />
+            <hr />
+            <History user={user} />
+        </div>}
+        {!flag && <Message />}
     </div>);
 };
 

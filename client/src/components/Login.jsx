@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { login } from "../scripts/api-scripts";
+import { getCurrentUser, login } from "../scripts/api-scripts";
 import { Button, Form, FormControl, FormLabel, InputGroup } from 'react-bootstrap';
+import { BrowserRouter } from "react-router-dom";
+import Message from "./Message";
 
 
 const Login = (props) => {
-    const [logged, setLogged] = useState();
-
+    const [logged, setLogged] = useState(getCurrentUser());
+    const flag = (logged instanceof Object);
+    
     const [password, setPassword] = useState("");
     const handlePassword = (event) => {
         setPassword(event.target.value);
@@ -16,15 +19,20 @@ const Login = (props) => {
         setEmail(event.target.value);
     }
     
+    let clicked = false;
+    let data = "EMPTY";
+
     const handleSubmit = async (event) => {
         
         event.preventDefault();
-        const data = await login(email, password);
+        data = await login(email, password);
+        clicked = true;
     }
-
+    
     return (
-        <div className="login-div" hidden={logged}>
+        <div className="login-div">
             <h1>Login</h1>
+            {!flag &&
             <Form onSubmit={handleSubmit}>
                 <InputGroup className="mb-3">
                     <InputGroup.Text id="basic-addon1">Email</InputGroup.Text>
@@ -57,7 +65,9 @@ const Login = (props) => {
                         REGISTER
                     </Button>
                 </InputGroup>
-            </Form>
+            </Form>}
+            {flag && <Message /> }
+            {clicked && <Message message={data} />}
         </div>);
 };
 

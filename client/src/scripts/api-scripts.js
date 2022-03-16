@@ -22,7 +22,6 @@ export async function  login(email, password, username = "") {
   if(data.accessToken){
     localStorage.setItem('user', JSON.stringify(data));
   }
-  alert(data.message);
 
   return data.message;
 }
