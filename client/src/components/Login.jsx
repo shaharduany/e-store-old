@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { login } from "../scripts/api-scripts";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
+import { Button, Form, FormControl, FormLabel, InputGroup } from 'react-bootstrap';
 
 
 const Login = (props) => {
@@ -24,37 +23,42 @@ const Login = (props) => {
     }
 
     return (
-    <div className="login-div" hidden={logged}>
-        <h1>LOGIN</h1>
-            <Form onSubmit={handleSubmit} >
-            <div>
-                <label htmlFor="username">Email</label>
-                <Input
-                    type="text"
-                    className="form-control"
-                    name="username"
+        <div className="login-div" hidden={logged}>
+            <h1>Login</h1>
+            <Form onSubmit={handleSubmit}>
+                <InputGroup className="mb-3">
+                    <InputGroup.Text id="basic-addon1">Email</InputGroup.Text>
+                   <FormControl
+                    placeholder="Email"
+                    aria-label="Email"
+                    aria-describedby="email-field"
                     value={email}
                     onChange={handleEmail}
-                />
-            </div>
-            <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <Input
-                    type="password"
-                    className="form-control"
-                    name="password"
+                    />
+                </InputGroup>
+                <InputGroup className='mb-3'>
+                    <InputGroup.Text>
+                        Password
+                    </InputGroup.Text>
+                    <FormControl 
+                    placeholder="Enter your password"
+                    aria-label="Password"
+                    type='password'
                     value={password}
                     onChange={handlePassword}
-              />
-            </div>
-            <div>
-                <Input
-                    type="submit"
-                    value="SUBMIT"
-                 />
-            </div>
+                    >
+                    </FormControl>
+                </InputGroup>
+                <InputGroup>
+                    <Button
+                    variant="primary"
+                    onClick={handleSubmit}
+                    >
+                        REGISTER
+                    </Button>
+                </InputGroup>
             </Form>
-            </div>);
+        </div>);
 };
 
 export default Login;

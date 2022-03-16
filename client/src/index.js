@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
-  <Header />,
+  <App />,
   document.getElementById('root')
 );
 

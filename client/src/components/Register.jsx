@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
+import { Button, Form, FormControl, FormLabel, InputGroup } from 'react-bootstrap';
 import {register} from '../scripts/api-scripts';
+
+
 const Register = (props) => {
     
     const [emailValue, setEmailValue] = useState("");
@@ -20,13 +23,39 @@ const Register = (props) => {
 
     return (<div className='register-div'>
         <h1>Register</h1>
-        <form onSubmit={handleSubmit}>
-            <label>Enter email</label>
-            <input type="text" value={emailValue} name="email" onChange={handleEmail} />
-            <label>Enter your password</label>
-            <input type="password" value={passwordValue} name="password" onChange={handlePassword} />
-            <input type="submit" value="submit"/>    
-        </form> 
+        <Form onSubmit={handleSubmit}>
+        <InputGroup className="mb-3">
+            <InputGroup.Text id="basic-addon1">Email</InputGroup.Text>
+            <FormControl
+            placeholder="Email"
+            aria-label="Email"
+            aria-describedby="email-field"
+            value={emailValue}
+            onChange={handleEmail}
+            />
+        </InputGroup>
+        <InputGroup className='mb-3'>
+            <InputGroup.Text>
+                Password
+            </InputGroup.Text>
+            <FormControl 
+            placeholder="Enter your password"
+            aria-label="Password"
+            type='password'
+            value={passwordValue}
+            onChange={handlePassword}
+            >
+            </FormControl>
+        </InputGroup>
+        <InputGroup>
+            <Button
+            variant="primary"
+            onClick={handleSubmit}
+            >
+                REGISTER
+            </Button>
+        </InputGroup>
+        </Form> 
     </div>);
 };
 
