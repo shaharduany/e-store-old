@@ -18,7 +18,7 @@ const Account = (props) => {
             <hr />
             <History user={user} />
         </div>}
-        {!flag && <Message />}
+        {!flag && <Message message="You're not logged in" />}
     </div>);
 };
 
