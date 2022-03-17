@@ -1,11 +1,22 @@
-.shop-div {
-    justify-content: center;
-    background-color: red;
-    padding: 100px;
-}
-
-.item-div {
+body{
+    background-color: darkgray;
     align-items: center;
+}
+.item-div{
     padding: 50px;
-    background-color: blueviolet;
+    margin: 10px;
+}
+.shop-div{
+    background-color: lightgray;
+    color: black;
+    padding: 0;
+}
+.header-div{
+    background-color: darkgray;
+    color: white;
+    font-size: large;
+    padding: 0;
+}
+.app-div{
+    align-items: center;
 }

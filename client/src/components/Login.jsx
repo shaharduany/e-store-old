@@ -21,12 +21,12 @@ const Login = (props) => {
     
     let clicked = false;
     let data = "EMPTY";
-
+    
     const handleSubmit = async (event) => {
         
         event.preventDefault();
         data = await login(email, password);
-        clicked = true;
+        
     }
     
     return (
@@ -67,7 +67,7 @@ const Login = (props) => {
                 </InputGroup>
             </Form>}
             {flag && <Message /> }
-            {clicked && <Message message={data} />}
+            {clicked ? <Message message={data} /> : null}
         </div>);
 };
 

@@ -16,9 +16,8 @@ import Logout from './components/Logout';
 
 function App() {
   return (
-    <div className="app-div">
+    <div className="app-div bg-light">
       <Header className="headers-div"/>
-      <hr />
       <Router>
             <Routes>
                 <Route exact path='/' element={<Shop />}></Route>

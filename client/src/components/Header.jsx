@@ -5,7 +5,7 @@ import { Container, Nav, Navbar, NavbarBrand, NavDropdown, NavLink } from 'react
 function Header(props){
 
     return (<div className="header-div">
-    <Navbar bg="light" expand="lg">
+    <Navbar>
         <Container>
             <NavbarBrand href="/">EShop</NavbarBrand>
             <Navbar.Collapse>

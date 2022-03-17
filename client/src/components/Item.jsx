@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 import AddCart from './AddCart';
 
 function Item(props){
@@ -12,12 +13,21 @@ function Item(props){
     
     }
     
-    return (<div className="item-div">
-        <h2>{name}</h2>
-        <p>{description}</p>
-        <p>Quantity: <b>{quantity}</b></p>
-        <img src={values.image} width={400} height={400}/>
-        <AddCart values={values} />
+    return (
+    <div className="item-div flex-row align-items-center">
+        <Container>
+            <Row >
+                <Col>
+                    <img src={values.image} width={300} height={300}/>
+                </Col>
+                <Col xs={8}>
+                    <h2>{name}</h2>
+                    <p>{description}</p>
+                    <p>Quantity: <b>{quantity}</b></p>
+                    <AddCart values={values} />
+               </Col>
+            </Row>
+        </Container>
     </div>);
 }
 

@@ -28,7 +28,7 @@ const Logout = (props) => {
             </Button>
         }
         {!flag && <Message message="You're not logged in" />}
-        {clicked && <Message message={data} />}
+        {clicked ? <Message message={data} /> : null}
     </div>);
 };
 
