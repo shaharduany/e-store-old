@@ -29,9 +29,6 @@ export default function AddCart(props){
                         </Form.Label>
                         </Row>
                         <Row>
-                            <Col xs={3}>
-
-                            </Col>
                             <Col xs={6}>
                                 <div >
                                     <Form.Label>

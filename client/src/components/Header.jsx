@@ -1,18 +1,47 @@
-import React, {useState, useEffect} from 'react';
-import { Container, Nav, Navbar, NavbarBrand, NavDropdown, NavLink } from 'react-bootstrap';
+import React from 'react';
+import { Nav, Navbar, NavbarBrand, NavDropdown, Col, Row, Badge} from 'react-bootstrap';
+import { getCurrentUser } from '../scripts/api-scripts';
 
 
 function Header(props){
-
-    return (<div className="header-div">
-    <Navbar>
-        <Container>
-            <NavbarBrand href="/">EShop</NavbarBrand>
+    const user = getCurrentUser();
+    let flag = (user instanceof Object)
+    return (
+    <Row className="header-row">
+        <Col>
+            <Navbar className="justify-content-center">
+                <NavbarBrand href="/"><Badge bg="primary">EShop</Badge></NavbarBrand>
+                <Nav.Link
+                href="/">
+                    HOME
+                </Nav.Link>
+            </Navbar>
+        </Col>
+        <Col>
+        </Col>
+        <Col className='account-col' >
+            <Navbar className='justify-content-end'>
             <Navbar.Collapse>
                 <Nav id="me-auto">
-                    <Nav.Link href="/">HOME</Nav.Link>
-                    <Nav.Link href="/login">Login</Nav.Link>
-                    <Nav.Link href="/register">Register</Nav.Link>
+                    {flag && <Nav.Link href="/cart">CART</Nav.Link>}
+                    {!flag && 
+                    <Nav.Link href="/login" 
+                    
+                    >LOGIN</Nav.Link>}
+                    {!flag &&
+                    <Nav.Link 
+                    href="/register"
+                    variant="primary"
+                    >
+                        REGISTER
+                    </Nav.Link>
+                    }
+                    {flag &&
+                        <Nav.Link href="/logout">
+                            LOGOUT
+                        </Nav.Link>
+                    }
+                    {flag &&
                     <NavDropdown title="Account">
                         <NavDropdown.Item href="/account">
                             Account
@@ -25,11 +54,13 @@ function Header(props){
                             Logout
                         </NavDropdown.Item>
                     </NavDropdown>
+                    }
                 </Nav>
             </Navbar.Collapse>
-        </Container>
-    </Navbar>
-    </div>);
+            </Navbar>
+     </Col>
+    </Row>
+    );
 }
 
 export default Header;

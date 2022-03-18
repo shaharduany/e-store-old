@@ -14,20 +14,21 @@ function Item(props){
     }
     
     return (
-    <div className="item-div flex-row align-items-center">
-        <Container>
-            <Row >
-                <Col>
-                    <img src={values.image} width={300} height={300}/>
-                </Col>
-                <Col xs={8}>
-                    <h2>{name}</h2>
-                    <p>{description}</p>
-                    <p>Quantity: <b>{quantity}</b></p>
-                    <AddCart values={values} />
-               </Col>
-            </Row>
-        </Container>
+    <div className="item-div align-items-center">
+        <Row>
+            <Col xs={4}>
+                <img src={values.image} width={300} height={300}/>
+             </Col>
+            <Col xs={6}>
+                <h2>{name}</h2>
+                <p>{description}</p>
+                <p>Quantity: <b>{quantity}</b></p>
+                <AddCart values={values} />
+             </Col>
+             <Col>
+                 
+             </Col>
+         </Row>
     </div>);
 }
 

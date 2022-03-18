@@ -1,22 +1,21 @@
 body{
-    background-color: darkgray;
-    align-items: center;
+    position: relative;
 }
-.item-div{
-    padding: 50px;
-    margin: 10px;
-}
-.shop-div{
-    background-color: lightgray;
-    color: black;
-    padding: 0;
-}
-.header-div{
-    background-color: darkgray;
-    color: white;
-    font-size: large;
-    padding: 0;
-}
+
 .app-div{
-    align-items: center;
+    background-color: lightskyblue;
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+
+.header-row{
+    padding: 15px;
+}
+
+.application-row{
+    padding: 10px;
+}
+
+.item-div{
+    padding: 20px;
 }
