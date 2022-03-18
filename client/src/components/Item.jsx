@@ -1,35 +1,48 @@
 import React, {useState} from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Badge, Button, Card, Col, Container, Row } from 'react-bootstrap';
 import AddCart from './AddCart';
 
-function Item(props){
+export default function Item(props){
     const values = props.values;
     
-    const [name, setName] = useState(values.name);
-    const [description, setDescription] = useState(values.description);
-    const [quantity, setQuantity] = useState(values.quantity);
-    
-    const addItem = (event) => {
-    
-    }
+    const name = values.name;
+    const description = values.description;
+    const quantity = values.quantity;
+    const about = values.about;
+    const image = values.image;
+    const imageSize = 300;
     
     return (
-    <div className="item-div align-items-center">
-        <Row>
-            <Col xs={4}>
-                <img src={values.image} width={300} height={300}/>
-             </Col>
-            <Col xs={6}>
-                <h2>{name}</h2>
-                <p>{description}</p>
-                <p>Quantity: <b>{quantity}</b></p>
+    <div className="item-div justify-content-center">
+        <Row className="justify-content-first">
+            <Col xm={4}
+            className="justify-content-right">
+                <img 
+                src={image}
+                width={imageSize}
+                height={imageSize}
+                />
+            </Col>
+            <Col className='justify-content-first'>
+                <Card 
+                bg="info"
+                >
+                    <Card.Header>
+                        <Badge bg="danger">ORIGINAL FAKE</Badge>
+                    </Card.Header>
+                    <Card.Body>
+                        <Card.Title>{name}</Card.Title>
+                        <Card.Subtitle>{description}</Card.Subtitle>
+                        <Card.Text>About: {about}</Card.Text>
+                        <Card.Text>
+                            <Badge bg="secondary">{quantity} LEFT</Badge>
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </Col>
+            <Col>
                 <AddCart values={values} />
-             </Col>
-             <Col>
-                 
-             </Col>
+            </Col>
          </Row>
     </div>);
 }
-
-export default Item;

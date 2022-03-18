@@ -3,12 +3,17 @@ import { Row, Col, Badge, Button, Form, InputGroup } from 'react-bootstrap';
 
 export default function AddCart(props){
     const values = props.values;
-    const [maxQuantity, setMaxQuantity] = useState(values.quantity);
+    
+    const max = values.quantity;
+
     let flag = false; // fix it later
     const [selection, setSelection] = useState(0);
     const rangeChange = (event) => {
         event.preventDefault();
         let val = event.target.value;
+        if(val > max){
+            return;
+        }
         setSelection(val);
         if(val > 0) {
             flag = false;
