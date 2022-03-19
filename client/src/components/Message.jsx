@@ -1,9 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import routes from '../routes';
+
+const ROUTES = routes();
 
 export default function Message(props){
     let message = (props.message) ? props.message : "Already logged in";
-    let path = (props.path) ? props.path : "/";
+    let path = (props.path) ? props.path : ROUTES.homepage;
 
     const navigate = useNavigate();
 

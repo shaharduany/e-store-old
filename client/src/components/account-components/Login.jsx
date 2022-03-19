@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { getCurrentUser, login } from "../scripts/api-scripts";
+import { getCurrentUser, login } from "../../scripts/api-scripts";
 import { Button, Col, Form, FormControl, FormLabel, InputGroup, Row } from 'react-bootstrap';
-import { BrowserRouter, useNavigate } from "react-router-dom";
-import Message from "./Message";
+import { useNavigate } from "react-router-dom";
+import Message from "../Message";
+import routes from "../../routes";
 
+
+const ROUTES = routes();
 
 const Login = (props) => {
     const [logged, setLogged] = useState(getCurrentUser());
@@ -26,12 +29,14 @@ const Login = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         data = await login(email, password);
+        window.location.reload(false);
+        navigate(ROUTES.process);
     }
 
     const forgotClick = (event) => {
         event.preventDefault();
         alert("Password can't be recovered, register again");
-        navigate('/register');
+        navigate(ROUTES.register);
     }
     
     return (

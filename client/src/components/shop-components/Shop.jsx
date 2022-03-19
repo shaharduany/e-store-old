@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Item from './Item';
-import { getShopItems } from "../scripts/api-scripts";
-import AddCart from './AddCart';
+import { getShopItems } from "../../scripts/api-scripts";
 
 
 function Shop(props){

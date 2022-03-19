@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { getCurrentUser, logout } from '../scripts/api-scripts';
+import { getCurrentUser, logout } from '../../scripts/api-scripts';
 
 function LoginLogout(props){
     const email = props.email;

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { getCurrentUser, logout } from '../scripts/api-scripts';
+import { getCurrentUser, logout } from '../../scripts/api-scripts';
 import { Button } from 'react-bootstrap';
 import Name from './Name';
 import History from './History';
-import Message from './Message';
+import Message from '../Message';
 
 const Account = (props) => {
     const [user, setUser] = useState(getCurrentUser());

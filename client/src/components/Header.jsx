@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Nav, Navbar, NavbarBrand, NavDropdown, Col, Row, Badge} from 'react-bootstrap';
 import { getCurrentUser } from '../scripts/api-scripts';
 
 
 function Header(props){
-    const user = getCurrentUser();
-    let flag = (user instanceof Object)
+    let [user, setUser] = useState(getCurrentUser());
+    const [flag, setFlag] = useState(user instanceof Object);
+    
     return (
     <Row className="header-row">
         <Col>

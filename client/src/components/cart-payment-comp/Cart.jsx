@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
-import { getCurrentUser } from "../scripts/api-scripts";import ItemContent from './iItemContent';
-import Message from './Message';
-import Name from './Name';
-;
+import { getCurrentUser } from "../../scripts/api-scripts";
+import Message from '../Message';
+
 
 const retrieveCart = (user) =>{
     if(user instanceof Object){

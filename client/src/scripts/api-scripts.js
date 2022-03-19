@@ -4,12 +4,14 @@ import axios from "axios";
 
 const API = API_PATHS();
 
-export async function checkout() {
+export async function checkout(payment) {
   const user = getCurrentUser();
   if(!(user instanceof Object)){
     return;
   }
+  
   const values = {
+    info: payment,
     accessToken: user.accessToken,
     userid: user._id,
     items: user.cart

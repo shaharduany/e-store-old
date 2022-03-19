@@ -1,6 +1,6 @@
 import React from 'react';
-import { getCurrentUser } from '../scripts/api-scripts';
-import Item from './Item';
+import { getCurrentUser } from '../../scripts/api-scripts';
+import Item from '../shop-components/Item';
 
 export default function History(props){
     const getHistory = (user) => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Col, Badge, Button, Form, InputGroup, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { getCurrentUser } from '../scripts/api-scripts';
+import { getCurrentUser } from '../../scripts/api-scripts';
 
 export default function AddCart(props){
     const values = props.values;

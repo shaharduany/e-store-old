@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import { Badge, Button, Card, Col, Form, FormControl, FormLabel, InputGroup, Row } from 'react-bootstrap';
 import { BrowserRouter, useNavigate } from 'react-router-dom';
-import {getCurrentUser, register} from '../scripts/api-scripts';
-import Message from './Message';
-
+import routes from '../../routes';
+import {getCurrentUser, register} from '../../scripts/api-scripts';
+import Message from '../Message';
+const ROUTES = routes();
 
 const Register = (props) => {
     const [emailValue, setEmailValue] = useState("");
@@ -25,6 +26,7 @@ const Register = (props) => {
         event.preventDefault();
         data = await register(emailValue, passwordValue, username);    
         clicked = true;
+        navigate(ROUTES.process);
     }
 
     const handlePassword = (event) => {
@@ -38,7 +40,7 @@ const Register = (props) => {
 
     const gotoLogin = (event) => {
         event.preventDefault();
-        navigate("/login");
+        navigate(ROUTES.login);
     }
 
     return (<div className='register-div'>

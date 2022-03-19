@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { BrowserRouter } from 'react-router-dom';
-import { getCurrentUser, logout } from '../scripts/api-scripts';
-import Message from './Message';
+import { BrowserRouter, useNavigate } from 'react-router-dom';
+import routes from '../../routes';
+import { getCurrentUser, logout } from '../../scripts/api-scripts';
+import Message from '../Message';
+
+const ROUTES = routes();
 
 const Logout = (props) => {
     const [logged, setLogged] = useState(getCurrentUser());
     let clicked = false;
     const flag = (logged instanceof Object);
     const data = "Logged out";
-    
+    const navigate = useNavigate();
+
     const handleLogout = async (event) => {
         event.preventDefault();
         logout();
         clicked = true;
+        window.location.reload(false);
     }
 
     return (
