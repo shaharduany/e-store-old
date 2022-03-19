@@ -10,13 +10,14 @@ export default function Item(props){
     const quantity = values.quantity;
     const about = values.about;
     const image = values.image;
-    const imageSize = 300;
+    const imageSize = 240;
+    
     
     return (
     <div className="item-div justify-content-center">
         <Row className="justify-content-first">
             <Col xm={4}
-            className="justify-content-right">
+            md="auto" >
                 <img 
                 src={image}
                 width={imageSize}
@@ -40,7 +41,7 @@ export default function Item(props){
                     </Card.Body>
                 </Card>
             </Col>
-            <Col>
+            <Col md="auto">
                 <AddCart values={values} />
             </Col>
          </Row>

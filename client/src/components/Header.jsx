@@ -19,7 +19,7 @@ function Header(props){
         </Col>
         <Col>
         </Col>
-        <Col className='account-col' >
+        <Col className='account-col' md="auto">
             <Navbar className='justify-content-end'>
             <Navbar.Collapse>
                 <Nav id="me-auto">
@@ -42,7 +42,7 @@ function Header(props){
                         </Nav.Link>
                     }
                     {flag &&
-                    <NavDropdown title="Account">
+                    <NavDropdown title="ACCOUNT">
                         <NavDropdown.Item href="/account">
                             Account
                         </NavDropdown.Item>

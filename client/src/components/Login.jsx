@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { getCurrentUser, login } from "../scripts/api-scripts";
-import { Button, Form, FormControl, FormLabel, InputGroup } from 'react-bootstrap';
-import { BrowserRouter } from "react-router-dom";
+import { Button, Col, Form, FormControl, FormLabel, InputGroup, Row } from 'react-bootstrap';
+import { BrowserRouter, useNavigate } from "react-router-dom";
 import Message from "./Message";
 
 
 const Login = (props) => {
     const [logged, setLogged] = useState(getCurrentUser());
     const flag = (logged instanceof Object);
-    
+    const navigate = useNavigate();
+
     const [password, setPassword] = useState("");
     const handlePassword = (event) => {
         setPassword(event.target.value);
@@ -23,51 +24,88 @@ const Login = (props) => {
     let data = "EMPTY";
     
     const handleSubmit = async (event) => {
-        
         event.preventDefault();
         data = await login(email, password);
-        
+    }
+
+    const forgotClick = (event) => {
+        event.preventDefault();
+        alert("Password can't be recovered, register again");
+        navigate('/register');
     }
     
     return (
         <div className="login-div">
-            <h1>Login</h1>
-            {!flag &&
-            <Form onSubmit={handleSubmit}>
-                <InputGroup className="mb-3">
-                    <InputGroup.Text id="basic-addon1">Email</InputGroup.Text>
-                   <FormControl
-                    placeholder="Email"
-                    aria-label="Email"
-                    aria-describedby="email-field"
-                    value={email}
-                    onChange={handleEmail}
-                    />
-                </InputGroup>
-                <InputGroup className='mb-3'>
-                    <InputGroup.Text>
-                        Password
-                    </InputGroup.Text>
-                    <FormControl 
-                    placeholder="Enter your password"
-                    aria-label="Password"
-                    type='password'
-                    value={password}
-                    onChange={handlePassword}
-                    >
-                    </FormControl>
-                </InputGroup>
-                <InputGroup>
-                    <Button
-                    variant="primary"
-                    onClick={handleSubmit}
-                    >
-                        REGISTER
-                    </Button>
-                </InputGroup>
-            </Form>}
-            {flag && <Message /> }
-            {clicked ? <Message message={data} /> : null}
+            <Row className="justify-content-center">
+                <Col>
+                </Col>
+                <Col>
+                    <h1>Login</h1>
+                    <br />
+                </Col>
+                <Col>
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={4}>
+                
+                </Col>
+                <Col xs={4}>
+                    
+                    {!flag &&
+                    <Form onSubmit={handleSubmit}>
+                        <InputGroup className="mb-3">
+                            <InputGroup.Text id="basic-addon1">Email</InputGroup.Text>
+                        <FormControl
+                            placeholder="Email"
+                            aria-label="Email"
+                            aria-describedby="email-field"
+                            value={email}
+                            onChange={handleEmail}
+                            />
+                        </InputGroup>
+                        <InputGroup className='mb-3'>
+                            <InputGroup.Text>
+                                Password
+                            </InputGroup.Text>
+                            <FormControl 
+                            placeholder="Enter your password"
+                            aria-label="Password"
+                            type='password'
+                            value={password}
+                            onChange={handlePassword}
+                            >
+                            </FormControl>
+                        </InputGroup>
+                            <Row>
+                                <Col>
+                                <InputGroup>
+                                    <Button
+                                    variant="primary"
+                                    onClick={handleSubmit}
+                                    >
+                                        LOGIN
+                                    </Button>
+                                </InputGroup>
+                                </Col>
+                                <Col md="auto">
+                                <InputGroup>
+                                    <Button
+                                    variant="secondary"
+                                    >
+                                        Forgot password
+                                    </Button>
+                                </InputGroup>
+                                </Col>
+                            </Row>
+                0    </Form>}
+                    {flag && <Message /> }
+                    {clicked ? <Message message={data} /> : null}
+                </Col>
+                <Col>
+                
+                </Col>
+            </Row>
         </div>);
 };
 

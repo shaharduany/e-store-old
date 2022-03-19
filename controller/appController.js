@@ -44,12 +44,14 @@ module.exports.checkout = async(req, res, next) => {
 module.exports.signupUser = (req, res) => {
   let email = req.body.email;
   let password = hashPassword(req);
+  let username = req.body.username;
   
   console.log(`email > ${email} \t password > ${password}`);
 
   let user = new User({
     email: email,
-    password: password
+    password: password,
+    username: username,
   });
 
   user.save((err, user) => {
@@ -60,8 +62,8 @@ module.exports.signupUser = (req, res) => {
     }
 
     let msg = {message: "message"};
-    console.log("crated user");
-    res.send(msg);
+    console.log("created user");
+    res.status(200).send(msg);
   }); 
 }
 

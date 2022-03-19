@@ -12,13 +12,13 @@ import Account from './components/Account';
 import Login from './components/Login';
 import Register from './components/Register';
 import Logout from './components/Logout';
-import {Col, Container, Row } from 'react-bootstrap';
+import {Badge, Col, Container, Row } from 'react-bootstrap';
 
 
 function App() {
   return (
     <div className="app-div">
-      <Container fluid={75} className="app-container">
+      <Container fluid className="app-container">
         <Header className="header-div"/>
         <Row className="application-row">
           <Router>
@@ -31,6 +31,22 @@ function App() {
                     <Route exact path='/logout' element={<Logout />}></Route>
                 </Routes>
           </Router>
+        </Row>
+        <Row>
+          <Col>
+            <p>Do not copy this, for your own sake. Nobody would buy from you.</p>
+          </Col>
+          <Col md="auto">
+            <footer>
+              <p>
+                <Badge bg="secondary">
+                    Author: Shahar Duany
+                </Badge>
+              </p>
+            </footer>
+          </Col>
+          <Col>
+          </Col>
         </Row>
       </Container>
     </div>

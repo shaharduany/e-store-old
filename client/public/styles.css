@@ -1,15 +1,18 @@
-body{
+.body-div{
+    background-color: lightslategrey;
     position: relative;
+    padding: 15px;
 }
 
 .app-div{
-    background-color: lightskyblue;
     font-family: 'Times New Roman', Times, serif;
-    
 }
 
 .header-row{
     padding: 15px;
+    background-color: lightgray;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
 }
 
 .application-row{
