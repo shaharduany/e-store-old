@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-import { Row, Col, Badge, Button, Form, InputGroup } from 'react-bootstrap';
+import { Row, Col, Badge, Button, Form, InputGroup, Card } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { getCurrentUser } from '../scripts/api-scripts';
 
 export default function AddCart(props){
     const values = props.values;
-    
+    const navigate = useNavigate();
+
     const max = values.quantity;
 
     let flag = false; // fix it later
     const [selection, setSelection] = useState(0);
+    
     const rangeChange = (event) => {
         event.preventDefault();
         let val = event.target.value;
@@ -22,7 +26,16 @@ export default function AddCart(props){
 
     const submitForm = event => {
         event.preventDefault();
-        alert(selection);
+        let user = getCurrentUser();
+        if(!(user instanceof Object)){
+            navigate('/login');
+        } else {
+            user.cart.push({
+                item: values,
+                amount: selection
+            });
+            localStorage.setItem('user', JSON.stringify(user));
+        }
     }
 
     return (

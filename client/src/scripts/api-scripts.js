@@ -4,7 +4,23 @@ import axios from "axios";
 
 const API = API_PATHS();
 
+export async function checkout() {
+  const user = getCurrentUser();
+  if(!(user instanceof Object)){
+    return;
+  }
+  const values = {
+    accessToken: user.accessToken,
+    userid: user._id,
+    items: user.cart
+  };
 
+  const headers = authHeader();
+
+  const res = await axios.post(API.checkout, values, {headers});
+  
+  return res.data;
+}
 
 export async function  login(email, password, username = "") {
   

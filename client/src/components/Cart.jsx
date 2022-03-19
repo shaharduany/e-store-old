@@ -1,11 +1,59 @@
 import React, {useState} from 'react';
-import { getShopItems, logout } from "../scripts/api-scripts";
+import { Row, Col, Button } from 'react-bootstrap';
+import { getCurrentUser } from "../scripts/api-scripts";import ItemContent from './iItemContent';
+import Message from './Message';
+import Name from './Name';
+;
+
+const retrieveCart = (user) =>{
+    if(user instanceof Object){
+        return user.cart;
+    } else {
+        return ["aaa"];
+    }
+}
 
 const Cart = (props) => {
-    const [items, setItems] = useState(props.items);
-
+    const USER = getCurrentUser();
+    const [items, setItems] = useState(retrieveCart(USER));
+    
+    let flag = (USER instanceof Object);
+    
     return (<div className="cart-div">
-        <h1>Cart page</h1>
+        <Row>
+            <Col>
+           
+            </Col>
+            <Col>
+                <h1>CART</h1>
+            </Col>
+            <Col>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                
+            </Col>
+            <Col>
+                {!flag && <Message />}
+                {items.map((value, index) => <div> 
+                    <p>{value.amount}x{value.item.name}</p>
+                </div>)}
+            </Col>
+            <Col>
+            
+            </Col>
+        </Row>
+        <Row>
+            <Col></Col>
+            <Col></Col>
+            <Col md="auto">
+                <Button
+                >
+                    CHECKOUT
+                </Button>
+            </Col>
+        </Row>
     </div>);
 };
 
