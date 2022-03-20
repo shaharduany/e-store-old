@@ -8,7 +8,7 @@ import Message from '../Message';
 const ROUTES = routes();
 
 const Logout = (props) => {
-    const [logged, setLogged] = useState(getCurrentUser());
+    const [logged, setLogged] = useState(props.user);
     let clicked = false;
     const flag = (logged instanceof Object);
     const data = "Logged out";
@@ -18,7 +18,7 @@ const Logout = (props) => {
         event.preventDefault();
         logout();
         clicked = true;
-        window.location.reload(false);
+        window.location.reload();
     }
 
     return (

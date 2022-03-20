@@ -26,7 +26,8 @@ export default function AddCart(props){
 
     const submitForm = event => {
         event.preventDefault();
-        let user = getCurrentUser();
+        let user = props.user;
+
         if(!(user instanceof Object)){
             navigate('/login');
         } else {

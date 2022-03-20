@@ -9,7 +9,7 @@ import routes from "../../routes";
 const ROUTES = routes();
 
 const Login = (props) => {
-    const [logged, setLogged] = useState(getCurrentUser());
+    const [logged, setLogged] = useState(props.user);
     const flag = (logged instanceof Object);
     const navigate = useNavigate();
 
@@ -29,8 +29,7 @@ const Login = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         data = await login(email, password);
-        window.location.reload(false);
-        navigate(ROUTES.process);
+        window.location.reload();
     }
 
     const forgotClick = (event) => {
@@ -104,7 +103,7 @@ const Login = (props) => {
                                 </Col>
                             </Row>
                 0    </Form>}
-                    {flag && <Message /> }
+                    {flag && <Message message="Proccessing" /> }
                     {clicked ? <Message message={data} /> : null}
                 </Col>
                 <Col>

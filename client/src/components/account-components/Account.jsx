@@ -6,7 +6,7 @@ import History from './History';
 import Message from '../Message';
 
 const Account = (props) => {
-    const [user, setUser] = useState(getCurrentUser());
+    const [user, setUser] = useState(props.user);
     const flag = (user instanceof Object);
     
     return (

@@ -12,7 +12,8 @@ const Register = (props) => {
     const [username, setUsername] = useState("");
 
     const navigate = useNavigate();
-    const logged = getCurrentUser();    
+    const logged = getCurrentUser();
+
     let flag = (logged instanceof Object);
     let clicked = false;
     let data = "EMPTY";

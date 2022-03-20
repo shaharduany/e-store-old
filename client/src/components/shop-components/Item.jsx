@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import { Badge, Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { getCurrentUser } from '../../scripts/api-scripts';
 import AddCart from './AddCart';
 
 export default function Item(props){
     const values = props.values;
+    const user = props.user;
     
     const name = values.name;
     const description = values.description;
@@ -42,7 +44,7 @@ export default function Item(props){
                 </Card>
             </Col>
             <Col md="auto">
-                <AddCart values={values} />
+                <AddCart values={values} user={user} />
             </Col>
          </Row>
     </div>);

@@ -21,7 +21,7 @@ function Shop(props){
 
     return (<div className="shop-div">
         {items && items.map((item) => (<div>
-        <Item key={item._id} values={item} />
+        <Item key={item._id} values={item} user={props.user}/>
         </div>
         ))}
     </div>);

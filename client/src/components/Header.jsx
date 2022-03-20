@@ -4,9 +4,15 @@ import { getCurrentUser } from '../scripts/api-scripts';
 
 
 function Header(props){
-    let [user, setUser] = useState(getCurrentUser());
+
+    let [user, setUser] = useState(props.user);
+
     const [flag, setFlag] = useState(user instanceof Object);
     
+    useEffect(() => {
+        setUser(props.user);
+    });
+
     return (
     <Row className="header-row">
         <Col>

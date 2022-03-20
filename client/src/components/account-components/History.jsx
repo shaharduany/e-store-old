@@ -10,7 +10,7 @@ export default function History(props){
         return [];
     }
 
-    let user = props.user;
+    let user = getCurrentUser();
     const items = getHistory(user);
 
     return (<div className="history-div">
