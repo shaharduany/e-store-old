@@ -17,6 +17,7 @@ import Proccess from './components/Proccess';
 import Payment from './components/cart-payment-comp/Payment';
 import routes from './routes';
 import { getCurrentUser } from './scripts/api-scripts';
+import { BsAlarm, BsTriangle, BsTriangleFill } from 'react-icons/bs';
 
 const ROUTES = routes();
 
@@ -41,9 +42,10 @@ function App() {
                 </Routes>
           </Router>
         </Row>
+        <hr />
         <Row>
           <Col>
-            <p>Do not copy this, for your own sake. Nobody would buy from you.</p>
+            <p><BsTriangleFill/> Do not copy this, for your own sake. Nobody would buy from you.</p>
           </Col>
           <Col md="auto">
             <footer>

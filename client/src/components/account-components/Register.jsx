@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { Badge, Button, Card, Col, Form, FormControl, FormLabel, InputGroup, Row } from 'react-bootstrap';
+import { Image, Badge, Button, Card, Col, Form, FormControl, FormLabel, InputGroup, Row } from 'react-bootstrap';
+import { BsAlarm, BsPerson } from 'react-icons/bs';
 import { BrowserRouter, useNavigate } from 'react-router-dom';
 import routes from '../../routes';
 import {getCurrentUser, register} from '../../scripts/api-scripts';
@@ -51,7 +52,7 @@ const Register = (props) => {
             </Col>
             <Col>
                 <h1>Register</h1>
-                <h6> * - Required field</h6>
+                <h6><BsAlarm /> * - Required field</h6>
                 <br />
             </Col>
             <Col>
@@ -59,6 +60,10 @@ const Register = (props) => {
         </Row>
         <Row>
             <Col>
+                <Image
+                src='eshop-logo.jpg'
+                fluid={true}
+                />
                 <Card>
                     <Card.Body>
                         <Card.Header>
@@ -77,12 +82,15 @@ const Register = (props) => {
                         </Card.Text>
                     </Card.Body>
                 </Card>
+
             </Col>
             <Col>
                 {!flag &&
                     <Form onSubmit={handleSubmit}>
                         <InputGroup className="mb-3">
-                        <InputGroup.Text>*Email</InputGroup.Text>
+                        <InputGroup.Text>
+                            *Email
+                        </InputGroup.Text>
                         <FormControl
                         placeholder="Email"
                         aria-label="Email"
@@ -93,7 +101,7 @@ const Register = (props) => {
                     </InputGroup>
                     <InputGroup>
                         <InputGroup.Text>
-                            Username
+                            <BsPerson /> Username
                         </InputGroup.Text>
                         <FormControl
                         placeholder='Enter your username'
@@ -104,6 +112,7 @@ const Register = (props) => {
                         onChange={userChange}
                         />
                     </InputGroup>
+                    <br />
                     <InputGroup className='mb-3'>
                         <InputGroup.Text>
                             *Password
@@ -116,6 +125,15 @@ const Register = (props) => {
                         onChange={handlePassword}
                         >
                         </FormControl>
+                    </InputGroup>
+                    <InputGroup>
+                        <InputGroup.Text>
+                            *Password 2
+                        </InputGroup.Text>
+                        <FormControl 
+                        placeholder='Retype the password'
+                        type='password'
+                        />
                     </InputGroup>
                     <Row>
                         <Col>
@@ -149,8 +167,9 @@ const Register = (props) => {
             </Col>
             <Col>
             
-                <Card>
-                    <Card.Img 
+                <Card >
+                    <Card.Img
+                    
                     variant="top"
                     src="./register-person.jpg"
                     />

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { getCurrentUser, login } from "../../scripts/api-scripts";
-import { Button, Col, Form, FormControl, FormLabel, InputGroup, Row } from 'react-bootstrap';
+import { Button, Col, Form, Image, FormControl, FormLabel, InputGroup, Row, Alert } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import Message from "../Message";
 import routes from "../../routes";
+import { BsEmojiHeartEyes, BsLockFill, BsMailbox, BsPerson, BsQuestionCircle, BsUnlockFill } from "react-icons/bs";
 
 
 const ROUTES = routes();
@@ -12,6 +13,8 @@ const Login = (props) => {
     const [logged, setLogged] = useState(props.user);
     const flag = (logged instanceof Object);
     const navigate = useNavigate();
+    const logoSize = 100;
+
 
     const [password, setPassword] = useState("");
     const handlePassword = (event) => {
@@ -41,25 +44,31 @@ const Login = (props) => {
     return (
         <div className="login-div">
             <Row className="justify-content-center">
-                <Col>
+                <Col xs={4}>
                 </Col>
-                <Col>
-                    <h1>Login</h1>
-                    <br />
+                <Col md="auto">
+                    <h1><BsUnlockFill/> Login</h1>
+                    <hr />
                 </Col>
                 <Col>
                 </Col>
             </Row>
             <Row>
                 <Col xs={4}>
-                
+                <Image 
+                src="eshop-logo.jpg"
+                fluid={true}
+                rounded={true}
+                />
                 </Col>
-                <Col xs={4}>
-                    
+                <Col md="auto">
+                    <p>Fill in the following fields</p>
                     {!flag &&
                     <Form onSubmit={handleSubmit}>
                         <InputGroup className="mb-3">
-                            <InputGroup.Text id="basic-addon1">Email</InputGroup.Text>
+                            <InputGroup.Text>
+                                 <BsPerson /> Email 
+                            </InputGroup.Text>
                         <FormControl
                             placeholder="Email"
                             aria-label="Email"
@@ -70,7 +79,7 @@ const Login = (props) => {
                         </InputGroup>
                         <InputGroup className='mb-3'>
                             <InputGroup.Text>
-                                Password
+                                <BsLockFill /> Password
                             </InputGroup.Text>
                             <FormControl 
                             placeholder="Enter your password"
@@ -97,7 +106,7 @@ const Login = (props) => {
                                     <Button
                                     variant="secondary"
                                     >
-                                        Forgot password
+                                        Forgot password <BsQuestionCircle />
                                     </Button>
                                 </InputGroup>
                                 </Col>
@@ -107,7 +116,15 @@ const Login = (props) => {
                     {clicked ? <Message message={data} /> : null}
                 </Col>
                 <Col>
-                
+                    <Alert bg="secondary">
+                        <Alert.Heading>We're happy to see you coming back!</Alert.Heading>
+                        <p>Welcome back to the website.
+                            Please keep in mind that there may be a delay in the orders.
+                            Matter of fact, it most likely will never get to you.
+                            But stay positive! <BsEmojiHeartEyes />
+                        </p>
+                        <footer>We're using cookies to delighten your experience.</footer>
+                    </Alert>
                 </Col>
             </Row>
         </div>);

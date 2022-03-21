@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Row, Col, Badge, Button, Form, InputGroup, Card } from 'react-bootstrap';
+import { BsArrowDown, BsBasket2Fill, BsBucketFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { getCurrentUser } from '../../scripts/api-scripts';
 
@@ -43,12 +44,20 @@ export default function AddCart(props){
         <div className='add-button'>
                  <Form>
                     <Row> 
-                        <Form.Label>
-                            <h5>Select amount</h5>
-                        </Form.Label>
+                        <Col></Col>
+                        <Col md="auto" >
+                            <Form.Label>
+                                <h4><Badge bg="danger">
+                                    <BsArrowDown />
+                                    PURCHASE NOW
+                                    <BsArrowDown />
+                                </Badge></h4>
+                            </Form.Label>
+                        </Col>
+                        <Col></Col>
                         </Row>
                         <Row>
-                            <Col xs={6}>
+                            <Col xs={6} md="auto" >
                                 <div >
                                     <Form.Label>
                                         <Badge bg="secondary">Buy: {selection}</Badge>
@@ -64,14 +73,14 @@ export default function AddCart(props){
                                     </InputGroup>
                                 </div>
                             </Col>
-                            <Col xs={3}>
+                            <Col xs={3} md="auto">
                                 <br />
                                 <Button
                                 variant="primary"
                                 disabled={flag}
                                 onClick={submitForm}
                                 >
-                                    ADD
+                                    <BsBasket2Fill /> ADD
                                 </Button>
                             </Col>
                     </Row>      

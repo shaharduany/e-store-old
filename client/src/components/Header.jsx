@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Nav, Navbar, NavbarBrand, NavDropdown, Col, Row, Badge} from 'react-bootstrap';
-import { getCurrentUser } from '../scripts/api-scripts';
+import { Nav, Navbar, NavbarBrand, Image, NavDropdown, Col, Row, Badge} from 'react-bootstrap';
+import {BsAwardFill, BsFillBasket2Fill, BsHandThumbsDownFill, BsHouseFill, BsMouse2Fill, BsPerson, BsPersonBadgeFill, BsShopWindow} from 'react-icons/bs';
 
 
 function Header(props){
-
+    const logoSize = 60;
     let [user, setUser] = useState(props.user);
 
     const [flag, setFlag] = useState(user instanceof Object);
@@ -15,46 +15,55 @@ function Header(props){
 
     return (
     <Row className="header-row">
-        <Col>
+        <Col md="auto">
+            <Image
+            src="./eshop-logo.jpg"
+            width={logoSize}
+            height={logoSize}
+            />
+        </Col>
+        <Col md="auto">
             <Navbar className="justify-content-center">
-                <NavbarBrand href="/"><Badge bg="primary">EShop</Badge></NavbarBrand>
+                <NavbarBrand href="/"><Badge bg="primary"><BsShopWindow />s EShop</Badge></NavbarBrand>
                 <Nav.Link
                 href="/">
-                    HOME
+                    <BsHouseFill /> HOME
                 </Nav.Link>
             </Navbar>
         </Col>
         <Col>
         </Col>
-        <Col className='account-col' md="auto">
+        <Col md="auto">
             <Navbar className='justify-content-end'>
             <Navbar.Collapse>
                 <Nav id="me-auto">
-                    {flag && <Nav.Link href="/cart">CART</Nav.Link>}
+                    {flag && <Nav.Link href="/cart">
+                        <BsFillBasket2Fill /> CART
+                    </Nav.Link>}
                     {!flag && 
                     <Nav.Link href="/login" 
                     
-                    >LOGIN</Nav.Link>}
+                    ><BsAwardFill /> LOGIN</Nav.Link>}
                     {!flag &&
                     <Nav.Link 
                     href="/register"
                     variant="primary"
                     >
-                        REGISTER
+                        <BsMouse2Fill /> REGISTER
                     </Nav.Link>
                     }
                     {flag &&
                         <Nav.Link href="/logout">
-                            LOGOUT
+                            <BsHandThumbsDownFill /> LOGOUT
                         </Nav.Link>
                     }
                     {flag &&
                     <NavDropdown title="ACCOUNT">
                         <NavDropdown.Item href="/account">
-                            Account
+                            <BsPersonBadgeFill /> Account
                         </NavDropdown.Item>
                         <NavDropdown.Item href="/cart">
-                            Cart
+                           <BsFillBasket2Fill/> Cart
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="/logout">

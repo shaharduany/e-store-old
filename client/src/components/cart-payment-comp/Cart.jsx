@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
+import { BsFillBasket2Fill, BsLockFill } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
+import routes from '../../routes';
 import { getCurrentUser } from "../../scripts/api-scripts";
 import Message from '../Message';
 
@@ -15,16 +18,21 @@ const retrieveCart = (user) =>{
 const Cart = (props) => {
     const USER = getCurrentUser();
     const [items, setItems] = useState(retrieveCart(USER));
-    
+    const navigate = useNavigate();
     let flag = (USER instanceof Object);
-    
+    const ROUTES = routes();
+
+    const continuePayment = (event) => {
+        navigate(ROUTES.payment);
+    }
+
     return (<div className="cart-div">
         <Row>
             <Col>
            
             </Col>
             <Col>
-                <h1>CART</h1>
+                <h1> <BsFillBasket2Fill /> CART</h1>
             </Col>
             <Col>
             </Col>
@@ -48,8 +56,8 @@ const Cart = (props) => {
             <Col></Col>
             <Col md="auto">
                 <Button
-                >
-                    CHECKOUT
+                onClick={continuePayment}>
+                    <BsLockFill /> CHECKOUT
                 </Button>
             </Col>
         </Row>
