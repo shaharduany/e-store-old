@@ -2,30 +2,34 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 const User = require("../modules/User");
 const authConfig = require("../config/auth-config");
+const Items = require("../modules/Items");
 
 const checkAmount = async(items) => {
-  for(item of items){
-    let stock = await Item.findById(item._id);
-    let quantity = stock.quantity - item.quantity;
+  console.log('in checkAmount');
+  for(let item of items){
+    console.log('in for loop check amount');
+    let stock = await Items.findById(item.item._id);
+    let quantity;
+
+    if(stock instanceof Object){
+      quantity = stock.quantity - item.amount;
+    }
 
     if(!stock || (quantity < 0)){
       return false;
     } else {
-      quan
-      await Item.findByIdAndUpdate(item._id, {quantity: quantity});
+      await Items.findByIdAndUpdate(item._id, {quantity: quantity});
     }
   }
   return true;
 };
 
-const updateUser = async (userId, items) => {
-  let user = await User.findById(userId);
+const updateUser = async (user, items) => {
+  console.log(`in update user`);
+  let userInst = await User.findOne({email: user.email});
   
-  for(item of items) {
-    await user.history.push(item);
-  }
-
-  await User.findByIdAndUpdate(userId, {history: user.history});
+  userInst.history.push(items);
+  await userInst.save();
 }
 
 

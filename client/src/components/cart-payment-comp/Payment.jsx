@@ -77,13 +77,37 @@ export default function Payment(props){
         return true;
     }
 
+    const resetUser = () => {
+        let user = getCurrentUser();
+        if(!(user instanceof Object)){
+            return;
+        }
+        user.cart = [];
+        const newUser = JSON.stringify(user);
+        localStorage.setItem('user', newUser);
+    }
+
     const pay = async(event) => {
-        if(checkFields()){
+        event.preventDefault();
+        if(!checkFields()){
             alert('you must fill all the fields');
             return;
         }
 
-        await checkout();
+
+        alert('here');
+        
+        const vals = {
+            name: name,
+            address: address,
+            card: card,
+            date: date,
+            cvv: cvv,
+        };
+
+        const res = await checkout(vals);
+        resetUser();
+        alert('now here');
         navigate(ROUTES.process);
     }
 

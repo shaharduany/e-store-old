@@ -38,6 +38,7 @@ export default function AddCart(props){
             });
             localStorage.setItem('user', JSON.stringify(user));
         }
+        selection = 0;
     }
 
     return (

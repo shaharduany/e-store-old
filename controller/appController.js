@@ -43,8 +43,11 @@ module.exports.mainGet = async (req, res, next) => {
 }
 
 module.exports.checkout = async(req, res, next) => {
-  const user = req.body.userid;
+  const user = req.body.user;
   const items = req.body.items;
+  
+  console.log(`in checkout. user > ${user} items: ${items}`);
+
   const msg = {
     message: "invalid, couldn't proccessed"
   }

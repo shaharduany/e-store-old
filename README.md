@@ -1,9 +1,18 @@
 # EShop Project
 
-
 ## UNDER CONSTRUCTION
 
 This project is a single-page ecommerce-shop with a React front and Node.js back, MongoDB noSQL database.
+
+## To-dos:
+1. Adjust the bug at AddCart - reset the amount.
+2. Remove alerts from Payment + change input types of date and card
+3. Finish the account view.
+4. Add date field at the checkout for more pleasent look.
+
+## IMPORTANT:
+1. I used an index on the email row of the user database for faster access, that's why it's OK not to use an index
+2. You MUST follow the setup instructions in order for it to work.
 
 ## Setup Instructions
 
