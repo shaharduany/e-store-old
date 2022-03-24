@@ -18,6 +18,25 @@ const ERRORS = {
     invalidInput: "invalid input",
 };
 
+module.exports.checkEmailExists = async(req, res, next) =>{
+  const email = req.body.email;
+
+  let value = false;
+
+  const lookUp = await User.findOne({email: email}).exec((err, user) => {
+    if(err){
+      console.log(err);
+      res.status(400).json({msg: "Something went wrong"});
+      return;
+    }
+
+    if(user){
+      value = true;
+      res.status(200).json({valid: value});
+    }
+  });
+}
+
 module.exports.mainGet = async (req, res, next) => {
   const data = await Item.find({});
   res.json(data);

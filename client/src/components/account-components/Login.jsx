@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { getCurrentUser, login } from "../../scripts/api-scripts";
-import { Button, Col, Form, Image, FormControl, FormLabel, InputGroup, Row, Alert } from 'react-bootstrap';
+import { Button, Col, Form, Image, FormControl, FormLabel, InputGroup, Row, Alert, Breadcrumb } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import Message from "../Message";
 import routes from "../../routes";
@@ -43,79 +43,75 @@ const Login = (props) => {
     
     return (
         <div className="login-div">
-            <Row className="justify-content-center">
-                <Col xs={4}>
-                </Col>
-                <Col md="auto">
-                    <h1><BsUnlockFill/> Login</h1>
-                    <hr />
-                </Col>
-                <Col>
-                </Col>
-            </Row>
             <Row>
+                <Col xs={3}>
+                    <Alert>
+                        <h3>ESHOP - Best made up shop in the browser currently</h3>
+                        <Image 
+                        src="eshop-logo.jpg"
+                        fluid={true}
+                        rounded={true}
+                        />
+                    </Alert>
+                </Col>
                 <Col xs={4}>
-                <Image 
-                src="eshop-logo.jpg"
-                fluid={true}
-                rounded={true}
-                />
+                    <Alert>
+                        <h1><BsUnlockFill />LOGIN</h1>
+                    
+                        <p>Fill in the following fields</p>
+                        {!flag &&
+                        <Form onSubmit={handleSubmit}>
+                            <InputGroup className="mb-3">
+                                <InputGroup.Text>
+                                    <BsPerson /> Email 
+                                </InputGroup.Text>
+                            <FormControl
+                                placeholder="Email"
+                                aria-label="Email"
+                                aria-describedby="email-field"
+                                value={email}
+                                onChange={handleEmail}
+                                />
+                            </InputGroup>
+                            <InputGroup className='mb-3'>
+                                <InputGroup.Text>
+                                    <BsLockFill /> Password
+                                </InputGroup.Text>
+                                <FormControl 
+                                placeholder="Enter your password"
+                                aria-label="Password"
+                                type='password'
+                                value={password}
+                                onChange={handlePassword}
+                                >
+                                </FormControl>
+                            </InputGroup>
+                                <Row>
+                                    <Col>
+                                    <InputGroup>
+                                        <Button
+                                        variant="primary"
+                                        onClick={handleSubmit}
+                                        >
+                                            LOGIN
+                                        </Button>
+                                    </InputGroup>
+                                    </Col>
+                                    <Col md="auto">
+                                    <InputGroup>
+                                        <Button
+                                        variant="secondary"
+                                        >
+                                            Forgot password <BsQuestionCircle />
+                                        </Button>
+                                    </InputGroup>
+                                    </Col>
+                                </Row>
+                    0    </Form>}
+                        {flag && <Message message="Proccessing" /> }
+                    </Alert>
                 </Col>
-                <Col md="auto">
-                    <p>Fill in the following fields</p>
-                    {!flag &&
-                    <Form onSubmit={handleSubmit}>
-                        <InputGroup className="mb-3">
-                            <InputGroup.Text>
-                                 <BsPerson /> Email 
-                            </InputGroup.Text>
-                        <FormControl
-                            placeholder="Email"
-                            aria-label="Email"
-                            aria-describedby="email-field"
-                            value={email}
-                            onChange={handleEmail}
-                            />
-                        </InputGroup>
-                        <InputGroup className='mb-3'>
-                            <InputGroup.Text>
-                                <BsLockFill /> Password
-                            </InputGroup.Text>
-                            <FormControl 
-                            placeholder="Enter your password"
-                            aria-label="Password"
-                            type='password'
-                            value={password}
-                            onChange={handlePassword}
-                            >
-                            </FormControl>
-                        </InputGroup>
-                            <Row>
-                                <Col>
-                                <InputGroup>
-                                    <Button
-                                    variant="primary"
-                                    onClick={handleSubmit}
-                                    >
-                                        LOGIN
-                                    </Button>
-                                </InputGroup>
-                                </Col>
-                                <Col md="auto">
-                                <InputGroup>
-                                    <Button
-                                    variant="secondary"
-                                    >
-                                        Forgot password <BsQuestionCircle />
-                                    </Button>
-                                </InputGroup>
-                                </Col>
-                            </Row>
-                0    </Form>}
-                    {flag && <Message message="Proccessing" /> }
-                    {clicked ? <Message message={data} /> : null}
-                </Col>
-                <Col>
+                <Col xs={3}>
                     <Alert bg="secondary">
                         <Alert.Heading>We're happy to see you coming back!</Alert.Heading>
                         <p>Welcome back to the website.

@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import { Image, Badge, Button, Card, Col, Form, FormControl, FormLabel, InputGroup, Row } from 'react-bootstrap';
+import { Image, Badge, Button, Card, Col, Form, FormControl, FormLabel, InputGroup, Row, Alert } from 'react-bootstrap';
 import { BsAlarm, BsPerson } from 'react-icons/bs';
-import { BrowserRouter, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import routes from '../../routes';
-import {getCurrentUser, register} from '../../scripts/api-scripts';
+import {checkEmail, getCurrentUser, register} from '../../scripts/api-scripts';
 import Message from '../Message';
 const ROUTES = routes();
 
@@ -11,6 +11,7 @@ const Register = (props) => {
     const [emailValue, setEmailValue] = useState("");
     const [passwordValue, setPasswordValue] = useState("");
     const [username, setUsername] = useState("");
+    const [rePassword, setRePassword] = useState("");
 
     const navigate = useNavigate();
     const logged = getCurrentUser();
@@ -26,9 +27,24 @@ const Register = (props) => {
 
     const handleSubmit = async(event) => {
         event.preventDefault();
+        if(passwordValue != rePassword){
+            alert("Passwords don't match");
+            return;
+        }
+
+        if(!checkEmail(emailValue)){
+            alert("Email is taken");
+            return;
+        }
+
         data = await register(emailValue, passwordValue, username);    
         clicked = true;
         navigate(ROUTES.process);
+    }
+
+    const handleRePass = (event) => {
+        event.preventDefault();
+        setRePassword(event.target.value);
     }
 
     const handlePassword = (event) => {
@@ -47,20 +63,8 @@ const Register = (props) => {
 
     return (<div className='register-div'>
         <Row>
-            <Col>
-            
-            </Col>
-            <Col>
-                <h1>Register</h1>
-                <h6><BsAlarm /> * - Required field</h6>
-                <br />
-            </Col>
-            <Col>
-            </Col>
-        </Row>
-        <Row>
-            <Col>
-                <Image
+            <Col xs={3}>
+            <Image
                 src='eshop-logo.jpg'
                 fluid={true}
                 />
@@ -84,89 +88,96 @@ const Register = (props) => {
                 </Card>
 
             </Col>
-            <Col>
-                {!flag &&
-                    <Form onSubmit={handleSubmit}>
-                        <InputGroup className="mb-3">
-                        <InputGroup.Text>
-                            *Email
-                        </InputGroup.Text>
-                        <FormControl
-                        placeholder="Email"
-                        aria-label="Email"
-                        aria-describedby="email-field"
-                        value={emailValue}
-                        onChange={handleEmail}
-                        />
-                    </InputGroup>
-                    <InputGroup>
-                        <InputGroup.Text>
-                            <BsPerson /> Username
-                        </InputGroup.Text>
-                        <FormControl
-                        placeholder='Enter your username'
-                        type='text'
-                        aria-label="Username"
-                        aria-description="Username-field"
-                        value={username}
-                        onChange={userChange}
-                        />
-                    </InputGroup>
+            <Col xs={5}>
+                <Alert>
+                    <h1>Register</h1>
+                    <h6><BsAlarm /> * - Required field</h6>
                     <br />
-                    <InputGroup className='mb-3'>
-                        <InputGroup.Text>
-                            *Password
-                        </InputGroup.Text>
-                        <FormControl 
-                        placeholder="Enter your password"
-                        aria-label="Password"
-                        type='password'
-                        value={passwordValue}
-                        onChange={handlePassword}
-                        >
-                        </FormControl>
-                    </InputGroup>
-                    <InputGroup>
-                        <InputGroup.Text>
-                            *Password 2
-                        </InputGroup.Text>
-                        <FormControl 
-                        placeholder='Retype the password'
-                        type='password'
-                        />
-                    </InputGroup>
-                    <Row>
-                        <Col>
-                            <InputGroup>
-                                <Button
-                                variant="primary"
-                                onClick={handleSubmit}
-                                >
-                                    REGISTER
-                                </Button>
-                            </InputGroup> 
-                        </Col>
-                        <Col md="auto">
-                            <InputGroup>
-                                <InputGroup.Text>
-                                    Already existing user?
-                                </InputGroup.Text>
-                                <Button
-                                variant="secondary"
-                                onClick={gotoLogin}
-                                >
-                                    LOGIN
-                                </Button>
-                            </InputGroup>
-                        </Col>
-                    </Row>
-                    </Form>
-                }
-                {flag && <Message />}
-                {clicked && <Message message={data} />}
+                    {!flag &&
+                        <Form onSubmit={handleSubmit}>
+                            <InputGroup className="mb-3">
+                            <InputGroup.Text>
+                                *Email
+                            </InputGroup.Text>
+                            <FormControl
+                            placeholder="Email"
+                            aria-label="Email"
+                            aria-describedby="email-field"
+                            value={emailValue}
+                            onChange={handleEmail}
+                            />
+                        </InputGroup>
+                        <InputGroup>
+                            <InputGroup.Text>
+                                <BsPerson /> Username
+                            </InputGroup.Text>
+                            <FormControl
+                            placeholder='Enter your username'
+                            type='text'
+                            aria-label="Username"
+                            aria-description="Username-field"
+                            value={username}
+                            onChange={userChange}
+                            />
+                        </InputGroup>
+                        <br />
+                        <InputGroup className='mb-3'>
+                            <InputGroup.Text>
+                                *Password
+                            </InputGroup.Text>
+                            <FormControl 
+                            placeholder="Enter your password"
+                            aria-label="Password"
+                            type='password'
+                            value={passwordValue}
+                            onChange={handlePassword}
+                            >
+                            </FormControl>
+                        </InputGroup>
+                        <InputGroup>
+                            <InputGroup.Text>
+                                *Password 2
+                            </InputGroup.Text>
+                            <FormControl 
+                            placeholder='Retype the password'
+                            type='password'
+                            value={rePassword}
+                            onChange={handleRePass}
+                            />
+                        </InputGroup>
+                        <Row>
+                            <Col>
+                                <InputGroup>
+                                    <Button
+                                    variant="primary"
+                                    onClick={handleSubmit}
+                                    >
+                                        REGISTER
+                                    </Button>
+                                </InputGroup> 
+                            </Col>
+                            <Col md="auto">
+                                <InputGroup>
+                                    <InputGroup.Text>
+                                        Already existing user?
+                                    </InputGroup.Text>
+                                    <Button
+                                    variant="secondary"
+                                    onClick={gotoLogin}
+                                    >
+                                        LOGIN
+                                    </Button>
+                                </InputGroup>
+                            </Col>
+                        </Row>
+                        </Form>
+                    }
+                    {flag && <Message />}
+                    {clicked && <Message message={data} />}
+                </Alert>
+
             </Col>
-            <Col>
-            
+            <Col xs={3}>
                 <Card >
                     <Card.Img
                     

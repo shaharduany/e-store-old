@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge, Card, Col, Image, Row } from 'react-bootstrap';
+import { Alert, Badge, Card, Col, Image, Row } from 'react-bootstrap';
 import AddCart from './AddCart';
 
 export default function Item(props){
@@ -11,7 +11,7 @@ export default function Item(props){
     const quantity = values.quantity;
     const about = values.about;
     const image = values.image;
-    const imageSize = 350;
+    const imageSize = 300;
     
     
     return (
@@ -28,27 +28,32 @@ export default function Item(props){
                 />
             </Col>
             <Col className='justify-content-first'>
-                <Card 
-                style={{
-                    height: "350px"
-                }}
+                <Card
                 bg="info"
                 >
                     <Card.Header>
                         <Badge bg="danger">ORIGINAL FAKE</Badge>
                     </Card.Header>
+                    <Row>
+                    <Col>
                     <Card.Body>
                         <Card.Title>{name}</Card.Title>
                         <Card.Subtitle>{description}</Card.Subtitle>
                         <Card.Text>About: {about}</Card.Text>
                     </Card.Body>
+                    </Col>
+                    <Col>
+                    <Card.Body>
+                        <Alert>
+                            <AddCart values={values} user={user} />
+                        </Alert>
+                    </Card.Body>
+                    </Col>
+                    </Row>
                     <Card.Footer> 
                         <Badge bg="secondary">{quantity} LEFT</Badge>
                     </Card.Footer>
                 </Card>
-            </Col>
-            <Col md="auto">
-                <AddCart values={values} user={user} />
             </Col>
          </Row>
     </div>);

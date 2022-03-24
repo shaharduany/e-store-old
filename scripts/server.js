@@ -4,7 +4,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const connectDB = require('../config/mongoDB');
-const { mainGet, signin, signupUser, checkout } = require("../controller/appController");
+const { mainGet, signin, signupUser, checkout, checkEmailExists } = require("../controller/appController");
 const authConfig = require("../config/auth-config");
 const verifySignUp = require("./middleware/verify-signup");
 const { authJwt } = require("./middleware/auth-jwt");
@@ -46,6 +46,7 @@ class Server {
     this.app.post(API_PATHS.register, verifySignUp.checkDuplicatedEmail, signupUser);
     this.app.post(API_PATHS.login, signin);
     this.app.post(API_PATHS.checkout, authJwt.verifyToken, checkout)
+    this.app.post(API_PATHS.checkEmail, checkEmailExists);
 
     this.app.get(API_PATHS.homepage, mainGet);
   }

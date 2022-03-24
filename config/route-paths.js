@@ -6,4 +6,6 @@ module.exports.API_PATHS = {
     register: "/api/register",
     logout: "/api/logout",
     checkout: "/api/checkout",
+    checkEmail: "/api/check-email",
+    
 }

@@ -4,6 +4,18 @@ import axios from "axios";
 
 const API = API_PATHS();
 
+export async function checkEmail(email){
+  const values = {
+    email: email
+  }
+
+  const headers = authHeader();
+
+  const res = await axios.post(API.checkEmail, values, {headers});
+
+  return res.data.valid;
+}
+
 export async function checkout(payment) {
   const user = getCurrentUser();
   if(!(user instanceof Object)){
