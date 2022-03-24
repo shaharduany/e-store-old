@@ -1,8 +1,13 @@
 # EShop Project
 
-## UNDER CONSTRUCTION
+This project is a single-page ecommerce-shop with a React front and Node.js back, MongoDB NoSQL database.
 
-This project is a single-page ecommerce-shop with a React front and Node.js back, MongoDB noSQL database.
+## Features:
+This project is a fully built and functioning store web application with the following features: 
+1. User Database - Login and registeration with encrypted passwords in a NoSQL database.
+2. User Authentication - Using JWT for storing cookies with a lifetime of 24 hours and assuring requests are verified.
+3. Payment Proccess.
+4. Seven views - Homepage (Dynamically displays items loaded from database), login, register, account, cart, payment and logout, all being single-page web application.
 
 ## To-dos:
 1. Adjust the bug at AddCart - reset the amount.
