@@ -54,7 +54,7 @@ module.exports.checkout = async(req, res, next) => {
     items: cart,
   };
 
-  console.log(`in checkout. user > ${user} items: ${items}`);
+  console.log(`in checkout. user > ${user} items: ${cart}`);
 
   const msg = {
     message: "invalid, couldn't proccessed"

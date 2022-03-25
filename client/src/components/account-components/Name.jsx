@@ -1,50 +1,16 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
-import { getCurrentUser, logout } from '../../scripts/api-scripts';
-
-function LoginLogout(props){
-    const email = props.email;
-
-    const logoutClick = (event) => {
-        event.preventDefault();
-        logout();
-        alert('Logged out');
-        //re-direct
-    }
-
-    const handleSignin = (event) => {
-        event.preventDefault();
-
-    }
-
-    return (<div className='LoginLogout'>
-        {email ? 
-        <Button 
-        variant="secondary"
-        onClick={logoutClick}
-        >
-            LOGOUT
-        </Button>
-        :
-        <Button 
-        variant="primary"
-        onClick={handleSignin}
-        >
-            Sign in
-        </Button>
-        }
-    </div>);
-}
+import { Alert } from 'react-bootstrap';
 
 export default function Name(props){
     let user = props.user;
-    const [email, setEmail] = useState(
-        (user !== null && user !== undefined) ?
-        user.email : undefined
-    );
-    
+    const email = user.email;
+    const name = user.name;
+
     return (<div>
-        <h1>Hello, {email ? email : "Guest"} </h1>
-        <LoginLogout email={email} />
+        <Alert>
+            <Alert.Heading>ACCOUNT</Alert.Heading>
+            <h3>Hello, {name ? name: "Welcome Back!"}</h3>
+            <p>Email address: {email}</p>
+        </Alert>
     </div>)
 }

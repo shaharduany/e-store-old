@@ -17,34 +17,31 @@ function Header(props){
 
     return (
     <Row className="header-row">
-        <Col md="auto">
+        <Navbar sticky='top' variant='dark'>
+        <Col xs={1}>
             <Image
             src="./eshop-logo.jpg"
             width={logoSize}
             height={logoSize}
             />
         </Col>
-        <Col md="auto">
-            <Navbar className="justify-content-center">
-                <NavbarBrand href="/"><Badge bg="primary"><BsShopWindow />s EShop</Badge></NavbarBrand>
-                <Nav.Link
-                href= {ROUTES.homepage}>
-                    <BsHouseFill /> HOME
-                </Nav.Link>
-            </Navbar>
+        <Col xs='auto'>
+                <NavbarBrand href="/"><Badge bg="primary">
+                    <BsShopWindow />s EShop</Badge>
+                </NavbarBrand>
         </Col>
         <Col>
+                <Nav.Link href= {ROUTES.homepage}>
+                    <BsHouseFill /> HOME
+                </Nav.Link>
         </Col>
         <Col md="auto">
-            <Navbar className='justify-content-end'>
             <Navbar.Collapse>
-                <Nav id="me-auto">
                     {flag && <Nav.Link href={ROUTES.cart}>
                         <BsFillBasket2Fill /> CART
                     </Nav.Link>}
                     {!flag && 
                     <Nav.Link href={ROUTES.login} 
-                    
                     ><BsAwardFill /> LOGIN</Nav.Link>}
                     {!flag &&
                     <Nav.Link 
@@ -73,10 +70,9 @@ function Header(props){
                         </NavDropdown.Item>
                     </NavDropdown>
                     }
-                </Nav>
             </Navbar.Collapse>
-            </Navbar>
      </Col>
+     </Navbar>
     </Row>
     );
 }

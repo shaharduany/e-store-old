@@ -1,22 +1,18 @@
 import React from 'react';
+import { Alert } from 'react-bootstrap';
 import { getCurrentUser } from '../../scripts/api-scripts';
-import Item from '../shop-components/Item';
+import Deal from './Deal';
 
 export default function History(props){
-    const getHistory = (user) => {
-        if(user instanceof Object) {
-            return user.history;
-        }
-        return [];
-    }
 
-    let user = getCurrentUser();
-    const items = getHistory(user);
+    let user = props.user;
+    const history = user.history;
 
     return (<div className="history-div">
-        {items instanceof Array && <h1>History is still empty</h1>}
-        {items.map((item) => 
-            <Item key={item._id} values={item}/>)
-        }
+        <Alert>
+            <Alert.Heading>HISTORY</Alert.Heading>
+            <hr />
+            {history && history.map((value) => <Deal values={value} />)}
+        </Alert>
     </div>)
 }

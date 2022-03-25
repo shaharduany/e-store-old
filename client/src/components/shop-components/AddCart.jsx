@@ -12,7 +12,8 @@ export default function AddCart(props){
 
     let flag = false; // fix it later
     const [selection, setSelection] = useState(0);
-    
+    const [bought, setBought] = useState(false);
+
     const rangeChange = (event) => {
         event.preventDefault();
         let val = event.target.value;
@@ -25,8 +26,11 @@ export default function AddCart(props){
         }
     }
 
+
     const submitForm = event => {
         event.preventDefault();
+        setBought(true);
+        
         let user = props.user;
 
         if(!(user instanceof Object)){
@@ -54,6 +58,7 @@ export default function AddCart(props){
                                     <BsArrowDown />
                                 </Badge></h4>
                             </Form.Label>
+                            {bought && <p>ADDED TO CART</p>}
                         </Col>
                         <Col></Col>
                         </Row>
