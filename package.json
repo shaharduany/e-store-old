@@ -11,7 +11,7 @@
     "server": "nodemon",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "npm run build --prefix client"
+    "build": "npm run build"
   },
   "author": "Shahar Duany",
   "license": "ISC",
