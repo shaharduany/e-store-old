@@ -1,6 +1,7 @@
 # EShop Project
 
 This project is a single-page, ecommerce-store, web-application with a React frontend and Node.JS backend, MongoDB NoSQL database.
+
 It is the graduation project of the Fullstack Web Developer course at ITSafe college.
 
 ## Features: 
@@ -9,10 +10,23 @@ It is the graduation project of the Fullstack Web Developer course at ITSafe col
 3. Payment Proccess.
 4. Seven views - Homepage (Dynamically displays items loaded from database), login, register, account, cart, payment and logout, all being single-page web application.
 
+
 ## To-dos:
 1. Change input types of date and card at Payment
 2. Finish the account view.
 3. Update history on client upon purchase.
+
+
+## Used Libraries
+
+1. React
+2. Bootstrap
+3. Axios
+4. Express
+5. JWT
+6. Mongoose / MongoDB
+7. Bcrypt
+8. Cors
 
 
 ## IMPORTANT:
@@ -26,16 +40,6 @@ It is the graduation project of the Fullstack Web Developer course at ITSafe col
 * Set up a default.json file and name two parameters:
 1. mongoURI - A URI for a MongoDB based database.
 2. secret - a secret key for the encyption.
-
-## Used Libraries
-
-1. React
-2. Bootstrap
-3. Axios
-4. Express
-5. JWT
-6. Mongoose / MongoDB
-7. Bcrypt
 
 
 > Author: Shahar Duany
