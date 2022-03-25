@@ -8,9 +8,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "server": "nodemon",
-    "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon"
   },
   "author": "Shahar Duany",
   "license": "ISC",
