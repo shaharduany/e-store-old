@@ -13,17 +13,18 @@ This project is a single-page, ecommerce-store, web-application with a React fro
 2. Finish the account view.
 3. Update history on client upon purchase.
 
+
 ## IMPORTANT:
 1. I indexed the email row of the user database for faster access, that's why it's OK not to use the email with search, but if you don't index the email row you should use the id for faster track.
 2. You MUST follow the setup instructions in order for it to work.
 
 ## Setup Instructions
 
-* Set up a MongoDB database or have access to a cloud based one
+* Set up a MongoDB database or have access to a cloud based one.
 
 * Set up a default.json file and name two parameters:
-1. mongoURI - A URI for a MongoDB based database
-2. secret - a secret key for the express
+1. mongoURI - A URI for a MongoDB based database.
+2. secret - a secret key for the encyption.
 
 ## Used Libraries
 
