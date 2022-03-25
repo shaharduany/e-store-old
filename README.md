@@ -11,12 +11,6 @@ It is the graduation project of the Fullstack Web Developer course at ITSafe col
 4. Seven views - Homepage (Dynamically displays items loaded from database), login, register, account, cart, payment and logout, all being single-page web application.
 
 
-## To-dos:
-1. Change input types of date and card at Payment
-2. Finish the account view.
-3. Update history on client upon purchase.
-
-
 ## Used Libraries
 
 1. React

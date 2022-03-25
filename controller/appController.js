@@ -47,9 +47,9 @@ module.exports.checkout = async(req, res, next) => {
   const cart = req.body.items;
   const info = req.body.info;
   const date = req.body.date;
-
+  
   const deal = {
-    date: date, 
+    date: new Date().toLocaleString() + " < STORE TIME",
     info: info,
     items: cart,
   };
@@ -67,8 +67,14 @@ module.exports.checkout = async(req, res, next) => {
   }
   
 
+  //removing credit card from database.
+  deal.info.card = undefined;
+
   await updateUser(user, deal);
-  res.status(200).json({message: "purchased successfully"});
+  res.status(200).json({
+    message: "purchased successfully",
+    newItems: deal,
+  });
 }
 
 

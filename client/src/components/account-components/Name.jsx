@@ -4,7 +4,7 @@ import { Alert } from 'react-bootstrap';
 export default function Name(props){
     let user = props.user;
     const email = user.email;
-    const name = user.name;
+    const name = user.username;
 
     return (<div>
         <Alert>

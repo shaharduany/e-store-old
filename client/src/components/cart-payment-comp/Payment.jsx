@@ -151,10 +151,10 @@ export default function Payment(props){
                             />
                         </InputGroup>
                         <InputGroup>
-                        
                             <InputGroup.Text><BsCalendar /> Expiration Date</InputGroup.Text>
                             <FormControl 
-                            type="date"
+                            type="text"
+                            placeholder='MM/YYYY'
                             value={date}
                             onChange={hanldeDateChange}
                             />

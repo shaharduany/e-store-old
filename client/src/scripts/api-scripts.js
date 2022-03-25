@@ -34,7 +34,17 @@ export async function checkout(payment) {
 
   const res = await axios.post(API.checkout, values, {headers});
   
-  return res.data;
+  const newItems = res.data.newItems;
+  if(newItems && user){
+    user.history.push(newItems);
+    localStorage.setItem('user', JSON.stringify(user));
+  } else if(res.status == 401){
+    alert('you need to log in again');
+    logout();
+  } else {
+    alert('something went wrong');
+  }
+  
 }
 
 export async function  login(email, password, username = "") {
