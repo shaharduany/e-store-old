@@ -28,7 +28,9 @@ class Server {
       next();
     });
 
-    this.app.use(express.static(path.join(__dirname,“../client/build”)));
+    this.app.use(
+      express.static(path.join(__dirname, "../client/build"))
+    );
 
     this.app.use(cors()); // Enable CORS
 
