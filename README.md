@@ -1,9 +1,8 @@
 # EShop Project
 
-This project is a single-page ecommerce-shop with a React front and Node.js back, MongoDB NoSQL database.
+This project is a single-page, ecommerce-store, web-application with a React frontend and Node.JS backend, MongoDB NoSQL database.
 
-## Features:
-This project is a fully built and functioning store web application with the following features: 
+## Features: 
 1. User Database - Login and registeration with encrypted passwords in a NoSQL database.
 2. User Authentication - Using JWT for storing cookies with a lifetime of 24 hours and assuring requests are verified.
 3. Payment Proccess.
@@ -12,9 +11,10 @@ This project is a fully built and functioning store web application with the fol
 ## To-dos:
 1. Change input types of date and card at Payment
 2. Finish the account view.
+3. Update history on client upon purchase.
 
 ## IMPORTANT:
-1. I used an index on the email row of the user database for faster access, that's why it's OK not to use an index
+1. I indexed the email row of the user database for faster access, that's why it's OK not to use the email with search, but if you don't index the email row you should use the id for faster track.
 2. You MUST follow the setup instructions in order for it to work.
 
 ## Setup Instructions
