@@ -28,6 +28,8 @@ class Server {
       next();
     });
 
+    this.app.use(express.static(path.join(__dirname,“../client/build”)));
+
     this.app.use(cors()); // Enable CORS
 
     this.app.use(sessions({
@@ -49,6 +51,11 @@ class Server {
     this.app.post(API_PATHS.checkEmail, checkEmailExists);
 
     this.app.get(API_PATHS.homepage, mainGet);
+    this.app.get("*", (req, res) => {
+      res.sendFile(
+        path.join(__dirname, "../client/build/index.html")
+      );
+    });
   }
 
   listen() {
