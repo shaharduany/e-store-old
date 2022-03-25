@@ -10,10 +10,8 @@ This project is a fully built and functioning store web application with the fol
 4. Seven views - Homepage (Dynamically displays items loaded from database), login, register, account, cart, payment and logout, all being single-page web application.
 
 ## To-dos:
-1. Adjust the bug at AddCart - reset the amount.
-2. Remove alerts from Payment + change input types of date and card
-3. Finish the account view.
-4. Add date field at the checkout for more pleasent look.
+1. Change input types of date and card at Payment
+2. Finish the account view.
 
 ## IMPORTANT:
 1. I used an index on the email row of the user database for faster access, that's why it's OK not to use an index

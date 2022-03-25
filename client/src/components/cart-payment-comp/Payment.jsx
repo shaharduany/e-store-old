@@ -89,14 +89,12 @@ export default function Payment(props){
 
     const pay = async(event) => {
         event.preventDefault();
+
         if(!checkFields()){
             alert('you must fill all the fields');
             return;
         }
 
-
-        alert('here');
-        
         const vals = {
             name: name,
             address: address,
@@ -107,7 +105,7 @@ export default function Payment(props){
 
         const res = await checkout(vals);
         resetUser();
-        alert('now here');
+
         navigate(ROUTES.process);
     }
 

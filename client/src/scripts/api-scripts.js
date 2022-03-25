@@ -17,7 +17,6 @@ export async function checkEmail(email){
 }
 
 export async function checkout(payment) {
-  console.log('in checkout');
   const user = getCurrentUser();
   if(!(user instanceof Object)){
     return;
@@ -28,13 +27,13 @@ export async function checkout(payment) {
     accessToken: user.accessToken,
     userid: user._id,
     user: user,
-    items: user.cart
+    items: user.cart,
   };
 
   const headers = authHeader();
 
   const res = await axios.post(API.checkout, values, {headers});
-  console.log('finished checkout');
+  
   return res.data;
 }
 
