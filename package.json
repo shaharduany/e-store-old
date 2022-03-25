@@ -1,6 +1,9 @@
 {
   "name": "api",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.x"
+  },
   "description": "This is the backend of the ecommerce shop",
   "main": "app.js",
   "scripts": {
