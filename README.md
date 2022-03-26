@@ -1,6 +1,6 @@
 # EShop Project
 
-This project is a single-page, ecommerce-store, web-application with a React frontend and Node.JS backend, MongoDB NoSQL database.
+This project is a single-page, mobile first, ecommerce-store, web-application with a React frontend and Node.JS backend, MongoDB NoSQL database.
 
 It is the graduation project of the Fullstack Web Developer course at ITSafe college.
 
