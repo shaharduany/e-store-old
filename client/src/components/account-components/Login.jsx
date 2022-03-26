@@ -54,7 +54,7 @@ const Login = (props) => {
                         />
                     </Alert>
                 </Col>
-                <Col xs={4}>
+                <Col md={4}>
                     <Alert>
                         <h1><BsUnlockFill />LOGIN</h1>
                     
@@ -111,7 +111,7 @@ const Login = (props) => {
                         {flag && <Message message="Proccessing" /> }
                     </Alert>
                 </Col>
-                <Col xs={3}>
+                <Col lg={3}>
                     <Alert bg="secondary">
                         <Alert.Heading>We're happy to see you coming back!</Alert.Heading>
                         <p>Welcome back to the website.

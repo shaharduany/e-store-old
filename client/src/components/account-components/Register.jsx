@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import routes from '../../routes';
 import {checkEmail, getCurrentUser, register} from '../../scripts/api-scripts';
 import Message from '../Message';
+
 const ROUTES = routes();
 
 const Register = (props) => {
@@ -16,8 +17,9 @@ const Register = (props) => {
     const navigate = useNavigate();
     const logged = getCurrentUser();
 
-    let flag = (logged instanceof Object);
-    let clicked = false;
+    const [flag, setFlag] = useState(logged instanceof Object);
+    const [clicked, setClickeed] = useState(false);
+
     let data = "EMPTY";
 
     const userChange = (event) => {
@@ -38,8 +40,8 @@ const Register = (props) => {
         }
 
         data = await register(emailValue, passwordValue, username);    
-        clicked = true;
-        navigate(ROUTES.process);
+        setClickeed(true);
+        
     }
 
     const handleRePass = (event) => {
@@ -60,10 +62,12 @@ const Register = (props) => {
         event.preventDefault();
         navigate(ROUTES.login);
     }
+    
+
 
     return (<div className='register-div'>
         <Row>
-            <Col xs={3}>
+            <Col lg={3}>
             <Image
                 src='eshop-logo.jpg'
                 fluid={true}
@@ -88,11 +92,12 @@ const Register = (props) => {
                 </Card>
 
             </Col>
-            <Col xs={5}>
+            <Col lg={5}>
                 <Alert>
                     <h1>Register</h1>
                     <h6><BsAlarm /> * - Required field</h6>
                     <br />
+                    {clicked && <Message message="You must now login. Directing to login" path={ROUTES.login}/>}
                     {!flag &&
                         <Form onSubmit={handleSubmit}>
                             <InputGroup className="mb-3">
@@ -173,7 +178,6 @@ const Register = (props) => {
                         </Form>
                     }
                     {flag && <Message />}
-                    {clicked && <Message message={data} />}
                 </Alert>
 
             </Col>

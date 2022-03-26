@@ -29,7 +29,7 @@ class Server {
     });
 
     this.app.use(
-      express.static(path.join(__dirname, "../client-build"))
+      express.static(path.join(__dirname, "../client/build"))
     );
 
     this.app.use(cors()); // Enable CORS
@@ -55,7 +55,7 @@ class Server {
     this.app.get(API_PATHS.homepage, mainGet);
     this.app.get("*", (req, res) => {
       res.sendFile(
-        path.join(__dirname, "../client-build/index.html")
+        path.join(__dirname, "../client/build/index.html")
       );
     });
   }

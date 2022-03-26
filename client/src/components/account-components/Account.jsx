@@ -30,7 +30,7 @@ const Account = (props) => {
         {!flag && <Message message="You're not logged in" />}
         {flag && 
         <Row>
-            <Col xs={3}>
+            <Col lg={3}>
                 <Alert>
                     <Nav variant='primary' bg='dark' className='flex-column'>
                         <Nav.Link onClick={accountClick}>
@@ -42,7 +42,7 @@ const Account = (props) => {
                     </Nav>
                 </Alert>
             </Col>
-            <Col xs={9}>
+            <Col lg={9}>
                 {displayName && <Name user={user} />}
                 {displayHistory && <History user={user} />}
             </Col>
