@@ -55,7 +55,7 @@ class Server {
     this.app.get(API_PATHS.homepage, mainGet);
     this.app.get("*", (req, res) => {
       res.sendFile(
-        path.join(__dirname, "../client/build/index.html")
+        path.join(__dirname, "../client-build/index.html")
       );
     });
   }
